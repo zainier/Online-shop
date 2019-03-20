@@ -1,0 +1,13 @@
+.table-style th{
+	background: #e60000;
+	color: white;
+	border-bottom: 5px solid #fff000;
+}
+.table-style td{
+	width:90px;
+
+}
+.btn{
+	border-radius: 0;
+	background: red;
+}
