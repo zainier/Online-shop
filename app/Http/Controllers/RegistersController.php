@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Clients;
-use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 class RegistersController extends Controller
@@ -15,9 +14,9 @@ class RegistersController extends Controller
             'ClientName'        => 'required|max:30',
             'ClientSurname'     => 'required|max:30',
             'ClientSex'         => 'required',
-            'ClientEmail'       => 'regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i|
-                                    required|email|unique:clients,ClientEmail|',
-            'ClientPassword'    => 'required',
+            'Email'       => 'regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i|
+                                    required|email|unique:clients,Email|',
+            'Password'    => 'required',
             'ClientPhoneNumber' => 'required|max:15',
             'ClientAddress'     => 'required|max:50',
             'ClientPostalCode'  => 'required|regex:/^[0-9]{2}-[0-9]{3}$/',
@@ -28,11 +27,8 @@ class RegistersController extends Controller
         $clients->ClientName = $request->input('ClientName');
         $clients->ClientSurname = $request->input('ClientSurname');
         $clients->ClientSex = $request->input('ClientSex');
-        $clients->ClientEmail = $request->input('ClientEmail');
-
-        $hash_pwd = Hash::make($request->input('ClientPassword'));
-        $clients->ClientPassword = $hash_pwd;
-
+        $clients->Email = $request->input('Email');
+        $clients->Password = bcrypt($request->input('Password'));
         $clients->ClientPhoneNumber = $request->input('ClientPhoneNumber');
         $clients->ClientAddress = $request->input('ClientAddress');
         $clients->ClientPostalCode = $request->input('ClientPostalCode');
@@ -43,7 +39,7 @@ class RegistersController extends Controller
     }
 
     public static function getCities(){
-        $cities = \DB::table('cities')->pluck('CityID','CityName');
+        $cities = DB::table('cities')->pluck('CityID','CityName');
         return view('register', ['cities' => $cities]);
     }
 }

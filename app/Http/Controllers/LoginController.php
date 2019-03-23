@@ -4,20 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+      $rules = array(
+          'email'  => 'required|regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i',
+          'password' => 'required'
+      );
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect('/registration');
-        } else {
+      $validator = Validator::make($request->all(),$rules);
+      if($validator->fails()){
+          return Redirect::to('/')->withErrors($validator)->withInput($request->except('password'));
+      }
+      else{
+          $userdata = array(
+              'email'       => $request->get('email'),
+              'password'    => $request->get('password')
+          );
+          if(Auth::attempt($userdata)){
 
-            // validation not successful, send back to form
-            return redirect('/');
-        }
+              return Redirect::to('/welcome');
+          }
+          else{
+              return Redirect::to('/')->withErrors('Email or password is incorrect');
+          }
+      }
     }
 }

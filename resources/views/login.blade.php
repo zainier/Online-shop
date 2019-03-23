@@ -31,13 +31,19 @@
             </div>
 
             <form class="login100-form validate-form" role = "form"
-                  action = "{{url('/login')}}" method = "">
-                <h4 class = "form-signin-heading"></h4>
+                  action = "{{url('/login')}}" method = "POST">@csrf
+                <h4 class = "form-signin-heading">
+                    @if(count($errors) > 0)
+                        @foreach($errors->all() as $error)
+                            {{$error}}
+                        @endforeach
+                    @endif
+                </h4>
                 <span class="login100-form-title">
 						Wprowadź swój login i hasło
 					</span>
 
-                <div class="wrap-input100 validate-input" data-validate = "Jest wymagany prawidłowy adres e-mail: ex@abc.xyz">
+                <div class="wrap-input100 validate-input" data-validate = "">
                     <input class="input100" type="text" name="email" placeholder="Email" >
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">

@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/registration', 'RegistersController@getCities', function () {
     return view('register');
 });
@@ -19,8 +21,12 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/register', 'RegistersController@register');
+Route::get('welcome', function () {
+    return "Welcome :)";
+});
 
-Route::get('/login', 'LoginController@login');
+Route::post('/register', 'RegistersController@register');
+
+Route::post('/login', 'LoginController@login');
 
 

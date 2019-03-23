@@ -44,7 +44,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <form method="" action = "{{ url('/register') }}">
+                <form method="POST" action = "{{ url('/register') }}">@csrf
                     <div class="form-row m-b-55">
                         <div class="name">Imię i Nazwisko</div>
                         <div class="value">
@@ -81,7 +81,7 @@
                         <div class="name">Email</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="email" name="ClientEmail">
+                                <input class="input--style-5" type="email" name="Email">
                                 <label class="label--desc">Email</label>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                         <div class="name">Hasło</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="password" name="ClientPassword">
+                                <input class="input--style-5" type="password" name="Password">
                                 <label class="label--desc">Haslo</label>
                             </div>
                         </div>

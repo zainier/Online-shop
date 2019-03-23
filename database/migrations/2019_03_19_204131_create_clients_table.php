@@ -25,11 +25,11 @@ class CreateClientsTable extends Migration
             $table->string('ClientPostalCode', 10)->default(null);
             $table->integer('ClientCityID')->default(null);
             $table->string('ClientPhoneNumber', 30)->default(null);
-            $table->string('ClientEmail', 50);
-            $table->string('ClientPassword', 100);
+            $table->string('Email', 50);
+            $table->string('Password', 100);
 
             $table->foreign('ClientCityID')->references('CityID')->on('cities');
-            $table->unique('ClientEmail');
+            $table->unique('Email');
 
         });
     }
