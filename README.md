@@ -11,14 +11,21 @@
 
 Web system for shopping online at the supermarket «U Jacka»
 
-front-end: HTML3, CSS5(Framework Bootstrap 4.2.1), JS
-back-end: Laravel 5.8
-DB: MySQL(phpMyAdmin)
-Server: Apache HTTP Server
-Server control: XAMPP
+front-end: HTML3, CSS5(Framework Bootstrap 4.2.1), JS<br/>
+back-end: Laravel 5.8<br/>
+DB: MySQL(phpMyAdmin) <br/>
+Server: Apache HTTP Server<br/>
+Server control: XAMPP<br/>
 
 
-## Configuration
+## Serving Laravel
+
+HTTP-server will listen to port 8000. Starting a server - "php artisan serve" in cmd.
+
+
+## Functionality
+
+
 
 
 
