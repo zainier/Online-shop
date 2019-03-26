@@ -51,13 +51,13 @@
                             <div class="row row-space">
                                 <div class="col-2">
                                     <div class="input-group-desc">
-                                        <input class="input--style-5" type="text" name="ClientName">
+                                        <input class="input--style-5" type="text" name="Name">
                                         <label class="label--desc">Imię</label>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="input-group-desc">
-                                        <input class="input--style-5" type="text" name="ClientSurname">
+                                        <input class="input--style-5" type="text" name="Surname">
                                         <label class="label--desc">Nazwisko</label>
                                     </div>
                                 </div>
@@ -68,11 +68,11 @@
                         <label class="label label--block">Płeć</label>
                         <div class="p-t-15">
                             <label class="radio-container m-r-55">Mężczyzna
-                                <input type="radio" checked="checked" name="ClientSex" value="M">
+                                <input type="radio" checked="checked" name="Sex" value="M">
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-container">Kobieta
-                                <input type="radio" name="ClientSex" value="K">
+                                <input type="radio" name="Sex" value="K">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -103,7 +103,7 @@
 
                                 <div class="col-9">
                                     <div class="input-group-desc">
-                                        <input class="input--style-5" type="text" name="ClientPhoneNumber">
+                                        <input class="input--style-5" type="text" name="PhoneNumber">
                                         <label class="label--desc">Numer telefonu</label>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                         <div class="name">Adres</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="text" name="ClientAddress">
+                                <input class="input--style-5" type="text" name="Address">
                                 <label class="label--desc">Adres</label>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                         <div class="name">Kod pocztowy</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="text" name="ClientPostalCode">
+                                <input class="input--style-5" type="text" name="PostalCode">
                                 <label class="label--desc">Kod pocztowy</label>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                         <div class="value">
                             <div class="input-group">
                                 <div class="rs-select2 js-select-simple select--no-search">
-                                    <select id='item_category' name = 'ClientCityID' class='form-control' required>
+                                    <select id='item_category' name = 'Id_City' class='form-control' required>
                                         @foreach($cities as $city => $id )
                                             <option value="{{ $id }}">{{ $city }}</option>
                                         @endforeach

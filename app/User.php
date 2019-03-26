@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-   protected $table = 'clients';
+   //protected $table = 'clients';
 
     /**
      * The attributes that should be cast to native types.

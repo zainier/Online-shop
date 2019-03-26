@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Clients;
+use App\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -11,35 +11,35 @@ class RegistersController extends Controller
 {
     public function register(Request $request){
         $this->validate($request,[
-            'ClientName'        => 'required|max:30',
-            'ClientSurname'     => 'required|max:30',
-            'ClientSex'         => 'required',
+            'Name'        => 'required|max:30',
+            'Surname'     => 'required|max:30',
+            'Sex'         => 'required',
             'Email'       => 'regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i|
-                                    required|email|unique:clients,Email|',
+                                    required|email|unique:users,Email|',
             'Password'    => 'required',
-            'ClientPhoneNumber' => 'required|max:15',
-            'ClientAddress'     => 'required|max:50',
-            'ClientPostalCode'  => 'required|regex:/^[0-9]{2}-[0-9]{3}$/',
-            'ClientCityID'      => 'required',
+            'PhoneNumber' => 'required|max:15',
+            'Address'     => 'required|max:50',
+            'PostalCode'  => 'required|regex:/^[0-9]{2}-[0-9]{3}$/',
+            'Id_City'      => 'required',
         ]);
 
-        $clients = new Clients;
-        $clients->ClientName = $request->input('ClientName');
-        $clients->ClientSurname = $request->input('ClientSurname');
-        $clients->ClientSex = $request->input('ClientSex');
-        $clients->Email = $request->input('Email');
-        $clients->Password = bcrypt($request->input('Password'));
-        $clients->ClientPhoneNumber = $request->input('ClientPhoneNumber');
-        $clients->ClientAddress = $request->input('ClientAddress');
-        $clients->ClientPostalCode = $request->input('ClientPostalCode');
-        $clients->ClientCityID = $request->input('ClientCityID');
+        $users = new Users;
+        $users->Name = $request->input('Name');
+        $users->Surname = $request->input('Surname');
+        $users->Sex = $request->input('Sex');
+        $users->Email = $request->input('Email');
+        $users->Password = bcrypt($request->input('Password'));
+        $users->PhoneNumber = $request->input('PhoneNumber');
+        $users->Address = $request->input('Address');
+        $users->PostalCode = $request->input('PostalCode');
+        $users->Id_City = $request->input('Id_City');
 
-        $clients->save();
+        $users->save();
         return redirect('/');
     }
 
     public static function getCities(){
-        $cities = DB::table('cities')->pluck('CityID','CityName');
+        $cities = DB::table('cities')->pluck('Id_City','CityName');
         return view('register', ['cities' => $cities]);
     }
 }
