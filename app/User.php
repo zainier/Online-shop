@@ -42,4 +42,22 @@ class User extends Authenticatable
     {
         return $this->Password;
     }
+
+    public function isAdmin(){
+        if($this->Role == 'admin'){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function isWorker(){
+        if($this->Role == 'worker'){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

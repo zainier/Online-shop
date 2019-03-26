@@ -29,4 +29,12 @@ Route::post('/register', 'RegistersController@register');
 
 Route::post('/login', 'LoginController@login');
 
+Route::get('/admin', function() {
+    return 'Welcome Admin';
+});
+
+
+Route::get('/worker', function() {
+    return 'Welcome Worker';
+});
 

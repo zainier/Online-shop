@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use App\User;
+
 
 class LoginController extends Controller
 {
@@ -26,7 +28,13 @@ class LoginController extends Controller
               'password'    => $request->get('password')
           );
           if(Auth::attempt($userdata)){
-
+              $user = User::where('Email', $request->get('email'))->first();
+              if($user->isAdmin()){
+                  return Redirect::to('/admin');
+              }
+              elseif($user->isWorker()){
+                  return Redirect::to('/worker');
+              }
               return Redirect::to('/welcome');
           }
           else{
