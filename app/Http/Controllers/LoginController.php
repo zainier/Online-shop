@@ -35,7 +35,7 @@ class LoginController extends Controller
               elseif($user->isWorker()){
                   return Redirect::to('/worker');
               }
-              return Redirect::to('/welcome');
+              return Redirect::to('/products');
           }
           else{
               return Redirect::to('/')->withErrors('Email or password is incorrect');

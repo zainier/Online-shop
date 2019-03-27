@@ -13,9 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/registration', 'RegistersController@getCities', function () {
-    return view('register');
-});
+Route::get('/registration', 'RegistersController@getCities');
 
 Route::get('/', function () {
     return view('login');
@@ -38,3 +36,6 @@ Route::get('/worker', function() {
     return 'Welcome Worker';
 });
 
+Route::get('/products','CategoriesController@loadCategories');
+
+//Route::get('/products','ProductsController@loadProducts');
