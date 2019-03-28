@@ -18,7 +18,9 @@
         @foreach($products as $product)
         <div class='col-md-3' style='color:red; background:#dddddd'>
             <div class='col-md-12 single-item noPadding' style='background:white'>
-                <div class='top' style='padding-top:15px;'><img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=150px width=200px></div>
+                <div class='top' style='padding-top:15px;'>
+                    <img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=150px width=200px>
+                </div>
                 <div class='bottom'>
                     <h3 class='item-title' align='center'>
                         <a href='item.php?item_title=$item_title&item_id=$rows[ProductID]'><b>{{$product->Name}}</b></a>

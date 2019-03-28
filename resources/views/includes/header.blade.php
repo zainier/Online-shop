@@ -19,9 +19,12 @@ border-color: #080808; width:100%; ">
             </a>
         </li>
         <li style="list-style-type: none;">
-            <a href="" class="navbar-brand" style="font-size:18px;margin-right:5px;">
+            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="navbar-brand" style="font-size:18px;margin-right:5px;">
                 <span class="glyphicon glyphicon-log-in d-inline-block align-top" style="margin-right:8px; "></span>Wyloguj się
             </a>
+            <form id="frm-logout" action="{{ url('/logout') }}" method="GET" style="display: none;">
+                {{ csrf_field() }}
+            </form>
         </li>
     </ul>
     <div class="container-fluid" style="padding-bottom:15px;">

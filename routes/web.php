@@ -41,5 +41,6 @@ Route::get('/worker', function() {
 /* PRODUCTS AND CATEGORIES*/
 
 Route::get('/products','ProductController@loadProducts');
+Route::get('/logout', 'LoginController@logout');
 
 Route::get('/products/{category}','ProductController@loadProducts')->name('category');
