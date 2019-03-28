@@ -13,7 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/registration', 'RegistersController@getCities');
+/*REGISTRATION/LOGIN*/
+
+Route::get('/registration', 'RegisterController@getCities');
 
 Route::get('/', function () {
     return view('login');
@@ -23,7 +25,7 @@ Route::get('welcome', function () {
     return "Welcome :)";
 });
 
-Route::post('/register', 'RegistersController@register');
+Route::post('/register', 'RegisterController@register');
 
 Route::post('/login', 'LoginController@login');
 
@@ -31,11 +33,13 @@ Route::get('/admin', function() {
     return 'Welcome Admin';
 });
 
-
 Route::get('/worker', function() {
     return 'Welcome Worker';
 });
 
-Route::get('/products','CategoriesController@loadCategories');
 
-//Route::get('/products','ProductsController@loadProducts');
+/* PRODUCTS AND CATEGORIES*/
+
+Route::get('/products','ProductController@loadProducts');
+
+Route::get('/products/{category}','ProductController@loadProducts')->name('category');

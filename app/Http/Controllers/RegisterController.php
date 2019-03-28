@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 
-class RegistersController extends Controller
+class RegisterController extends Controller
 {
     public function register(Request $request){
         $this->validate($request,[
