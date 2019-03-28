@@ -23,7 +23,7 @@
                 </div>
                 <div class='bottom'>
                     <h3 class='item-title' align='center'>
-                        <a href='item.php?item_title=$item_title&item_id=$rows[ProductID]'><b>{{$product->Name}}</b></a>
+                        <a href='selectedProduct.blade.php?item_title={{$product->Name}}&item_id={{$product->Id_Product}}'><b>{{$product->Name}}</b></a>
                         </h3>
                         <div class='pull-right' style='font-size:20px; margin-right:20px;'><b>{{$product->Value}} zl</b></div>
                         <div class='clearfix'></div>
