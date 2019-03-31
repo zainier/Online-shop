@@ -18,10 +18,12 @@
         @foreach($products as $product)
         <div class='col-md-3' style='color:red; background:#dddddd'>
             <div class='col-md-12 single-item noPadding' style='background:white'>
-                <div class='top' style='padding-top:15px;'><img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=150px width=200px></div>
+                <div class='top' style='padding-top:15px;'>
+                    <img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=150px width=200px>
+                </div>
                 <div class='bottom'>
                     <h3 class='item-title' align='center'>
-                        <a href='item.php?item_title=$item_title&item_id=$rows[ProductID]'><b>{{$product->Name}}</b></a>
+                        <a href='selectedProduct.blade.php?item_title={{$product->Name}}&item_id={{$product->Id_Product}}'><b>{{$product->Name}}</b></a>
                         </h3>
                         <div class='pull-right' style='font-size:20px; margin-right:20px;'><b>{{$product->Value}} zl</b></div>
                         <div class='clearfix'></div>
