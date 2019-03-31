@@ -35,11 +35,19 @@ class LoginController extends Controller
               elseif($user->isWorker()){
                   return Redirect::to('/worker');
               }
+              $user = Auth::user();
+              \Session::put('key', $user->Email);
               return Redirect::to('/products');
           }
           else{
               return Redirect::to('/')->withErrors('Email or password is incorrect');
           }
       }
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        \Session::flush();
+        return redirect('/');
     }
 }

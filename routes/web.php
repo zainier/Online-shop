@@ -13,9 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*REGISTRATION/LOGIN*/
+/*AUTHENTICATION*/
 
-Route::get('/registration', 'RegisterController@getCities');
+Route::get('registration', 'RegisterController@getCities');
 
 Route::get('/', function () {
     return view('login');
@@ -25,21 +25,23 @@ Route::get('welcome', function () {
     return "Welcome :)";
 });
 
-Route::post('/register', 'RegisterController@register');
+Route::post('register', 'RegisterController@register');
 
-Route::post('/login', 'LoginController@login');
+Route::post('login', 'LoginController@login');
 
-Route::get('/admin', function() {
+Route::get('admin', function() {
     return 'Welcome Admin';
 });
 
-Route::get('/worker', function() {
+Route::get('worker', function() {
     return 'Welcome Worker';
 });
+
+Route::get('logout', 'LoginController@logout');
 
 
 /* PRODUCTS AND CATEGORIES*/
 
-Route::get('/products','ProductController@loadProducts');
+Route::get('products','ProductController@checkLoginStatus');
 
-Route::get('/products/{category}','ProductController@loadProducts')->name('category');
+Route::get('products/{category}','ProductController@checkLoginStatus')->name('category');

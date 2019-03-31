@@ -19,7 +19,7 @@ border-color: #080808; width:100%; ">
             </a>
         </li>
         <li style="list-style-type: none;">
-            <a href="" class="navbar-brand" style="font-size:18px;margin-right:5px;">
+            <a href="{{action('LoginController@logout') }}" class="navbar-brand" style="font-size:18px;margin-right:5px;">
                 <span class="glyphicon glyphicon-log-in d-inline-block align-top" style="margin-right:8px; "></span>Wyloguj się
             </a>
         </li>
