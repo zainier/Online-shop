@@ -39,7 +39,7 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
    
 2. <b>Sign in</b><br>
     This is the initial page and available at the address "http://127.0.0.1:8000"<br>
-    The following data is required for Sign in:
+    The following data is required for Sign in:<br>
     a) Email<br>
     b) Password<br>
     
