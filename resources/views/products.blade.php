@@ -12,7 +12,7 @@
 
 </head>
 <body style="background:#dddddd">
-@include('includes.header')
+@include('header')
 <div class="container">
     <div class="row" style="background:#dddddd">
         @foreach($products as $product)
@@ -23,7 +23,22 @@
                 </div>
                 <div class='bottom'>
                     <h3 class='item-title' align='center'>
-                        <a href='selectedProduct.blade.php?item_title={{$product->Name}}&item_id={{$product->Id_Product}}'><b>{{$product->Name}}</b></a>
+                        <a href="{{ route('show.product', $product->Name) }}"><b>{{$product->Name}}</b></a>
+                                                <div> <form action="/cart/add" name="add_to_cart" method="post" accept-charset="UTF-8">
+                        {!! csrf_field() !!}
+                        <input type="hidden" name="product" value="{{$product->Id_Product}}" />
+                        <select name="amount" style="width: 100%;">
+                             <option value="1">1</option>
+                             <option value="2">2</option>
+                             <option value="3">3</option>
+                             <option value="4">4</option>
+                             <option value="5">5</option>
+                         </select>
+                        <p align="center"><button class="btn btn-info btn-block">dodaj do koszyka</button></p>
+                        </form>
+                        </div>
+                        <div class='pull-right' style='font-size:20px; margin-right:20px;'><b>{{$product->Value}} zl</b></div>
+                        <div class='clearfix'></div>
                         </h3>
                         <div class='pull-right' style='font-size:20px; margin-right:20px;'><b>{{$product->Value}} zl</b></div>
                         <div class='clearfix'></div>

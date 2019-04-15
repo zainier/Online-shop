@@ -24,10 +24,6 @@ border-color: #080808; width:100%; ">
             </a>
         </li>
     </ul>
-    <br>
-    <br>
-    <br>
-    <br>
     <div class="container-fluid" style="padding-bottom:15px;">
         <ul class="nav navbar-nav" style="font-size:25px;  margin-top:0; height:130px;"><hr>
             <li style ="margin-left: 15px; margin-right:15px;"><a href="{{url('products')}}">
@@ -36,8 +32,9 @@ border-color: #080808; width:100%; ">
             <li style=" margin-left: 15px;margin-right:15px;"><a href="">
                     <b>Promocje</b></a>
             </li>
-
+            @foreach($categories as $category)
+                <li style='margin-left:15px; margin-right:15px;'><a href="{{route('category', $category->slug) }}"><b>{{$category->name}}</b></a></li>
+            @endforeach
         </ul>
     </div>
 </nav>
-
