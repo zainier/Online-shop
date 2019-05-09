@@ -51,7 +51,8 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
 5. <b>Admin Panel</b><br>
     Page is available at the address "http://127.0.0.1:8000/admin/login". You must have administrator privileges to log in.<br>
     Available features:<br>
-    a) Products - CRUD
+    a) Products - CRUD<br>
+    b) Users - CRUD
     
    
     
