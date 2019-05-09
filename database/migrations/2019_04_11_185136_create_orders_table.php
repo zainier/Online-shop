@@ -13,13 +13,13 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-    	Schema::create('orders', function(Blueprint $table)
-    	{
-      	$table->increments('id');
-      	$table->integer('user_id');
-     	 $table->text('address');
-      	$table->decimal('total', 10, 2);
-     	 $table->timestamps();
+    	Schema::create('orders', function(Blueprint $table) {
+      	    $table->increments('id');
+      	    $table->integer('user_id');
+     	    $table->text('address');
+      	    $table->decimal('total', 10, 2);
+      	    $table->integer('status');
+     	    $table->timestamps();
     	});
     }
 

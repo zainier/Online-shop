@@ -40,6 +40,7 @@ Route::get('logout', 'LoginController@logout');
 Route::get('products','ProductController@checkLoginStatus');
 
 Route::get('products/{category}','ProductController@checkLoginStatus')->name('category');
+
 /* CART AND ORDERS*/
 
 Route::get('/cart', array('before'=>'auth.basic','as'=>'cart','uses'=>'CartController@getIndex'));
@@ -50,6 +51,13 @@ Route::post('/cart/update', array('before'=>'auth.basic','as'=>'update','uses'=>
 Route::post('/order', array('before'=>'auth.basic','uses'=>'OrderController@postOrder'));
 Route::get('/user/orders', array('before'=>'auth.basic','as'=>'orders','uses'=>'OrderController@getIndex'));
 Route::get('/order', array('before'=>'auth.basic','uses'=>'OrderController@postOrder'));
+
+/* USER'S ORDERS*/
+
+Route::get('worker','WorkerPanelController@checkLoginStatus');
+Route::get('confirm_order/{id_order}','WorkerPanelController@confirmOrder')->name('confirmOrder');
+Route::get('cancel_order/{id_order}','WorkerPanelController@cancelOrder')->name('cancelOrder');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
