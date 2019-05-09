@@ -61,13 +61,21 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
     Available features:<br>
     a) Products - CRUD<br>
     b) Users - CRUD<br>
-6. <b>Cart and making orders</b><br>
+    
+6. <b>Worker Panel</b><br>
+    Page is available at the address "http://127.0.0.1:8000/worker". You must have worker privileges to log in.<br>
+    Available features:<br>
+    a) Show user's orders<br>
+    b) Сhange the status of the order<br>
+
+7. <b>Cart and making orders</b><br>
     Page is available at the address "http://127.0.0.1:8000/cart"<br>
     Available features:<br>
     a) Remove products from cart<br>
     b) Change number of ordering products<br>
     c) Submit the order<br>
-6. <b>Orders</b><br>
+    
+8. <b>Orders</b><br>
     Page is available at the address "http://127.0.0.1:8000/user/orders" after login. You can look at your orders history
     
     
