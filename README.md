@@ -48,12 +48,22 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
  
 4. <b>Product catalog</b><br>
     Page is available at the address "http://127.0.0.1:8000/products" after login. Highlights all available products in the store. You can choose a specific category of products from the menu.
+    Available features:<br>
+    a) Add to cart<br>
+
 5. <b>Admin Panel</b><br>
     Page is available at the address "http://127.0.0.1:8000/admin/login". You must have administrator privileges to log in.<br>
     Available features:<br>
     a) Products - CRUD<br>
-    b) Users - CRUD    
-   
+    b) Users - CRUD<br>
+6. <b>Cart and making orders</b><br>
+    Page is available at the address "http://127.0.0.1:8000/cart"<br>
+    Available features:<br>
+    a) Remove products from cart<br>
+    b) Change number of ordering products<br>
+    c) Submit the order<br>
+6. <b>Orders</b><br>
+    Page is available at the address "http://127.0.0.1:8000/user/orders" after login. You can look at your orders history
     
     
    
