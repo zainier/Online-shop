@@ -19,6 +19,11 @@ Server control: XAMPP<br/>
 
 
 ## Serving Laravel
+If you decide to clone this project, you will need to make an .env file:
+
+rename .env.example .env<br>
+composer update<br>
+php artisan key:generate<br>
 
 HTTP-server will listen to port 8000. Starting a server - "php artisan serve" in cmd.<br>
 DataBase will listen to port 8080. Starting a server - run Apache and MySQL module in XAMPP Control Panel.
