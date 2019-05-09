@@ -59,9 +59,9 @@ class CartController extends BaseController {
 
     $user_id = Auth::user()->id;
 
-    $cart_products=Cart::with('Products')->where('user_id','=',$user_id)->get();
+    $cart_products = Cart::with('Products')->where('user_id','=',$user_id)->get();
 
-    $cart_total=Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
+    $cart_total = Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
 
     if(!$cart_products){
 

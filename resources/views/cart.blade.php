@@ -14,7 +14,7 @@
 <body style="background:#dddddd">
 @include('includes.header')
 <div class="container" style="width:60%">
-    
+
 
   <h1>Koszyk</h1>
   <table class="table">
@@ -80,13 +80,14 @@
         </td>
         <td>
         <b>{{$cart_total}}</b>
-        </td>        
+        </td>
       </tr>
     </tbody>
   </table>
-  <form action="/order" method="post" accept-charset="UTF-8">
-    <button class="btn btn-block btn-primary btn-large">Zamów</button>
-  </form>
+    <form action="/order" method="post" accept-charset="UTF-8">
+        {!! csrf_field() !!}
+        <button class="btn btn-block btn-primary btn-large">Place order</button>
+    </form>
 </div>
 
 
