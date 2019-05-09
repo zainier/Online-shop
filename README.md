@@ -19,6 +19,11 @@ Server control: XAMPP<br/>
 
 
 ## Serving Laravel
+If you decide to clone this project, you will need to make an .env file:
+
+rename .env.example .env<br>
+composer update<br>
+php artisan key:generate<br>
 
 HTTP-server will listen to port 8000. Starting a server - "php artisan serve" in cmd.<br>
 DataBase will listen to port 8080. Starting a server - run Apache and MySQL module in XAMPP Control Panel.
@@ -48,12 +53,30 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
  
 4. <b>Product catalog</b><br>
     Page is available at the address "http://127.0.0.1:8000/products" after login. Highlights all available products in the store. You can choose a specific category of products from the menu.
+    Available features:<br>
+    a) Add to cart<br>
+
 5. <b>Admin Panel</b><br>
     Page is available at the address "http://127.0.0.1:8000/admin/login". You must have administrator privileges to log in.<br>
     Available features:<br>
     a) Products - CRUD<br>
-    b) Users - CRUD    
-   
+    b) Users - CRUD<br>
+    
+6. <b>Worker Panel</b><br>
+    Page is available at the address "http://127.0.0.1:8000/worker". You must have worker privileges to log in.<br>
+    Available features:<br>
+    a) Show user's orders<br>
+    b) Сhange the status of the order<br>
+
+7. <b>Cart and making orders</b><br>
+    Page is available at the address "http://127.0.0.1:8000/cart"<br>
+    Available features:<br>
+    a) Remove products from cart<br>
+    b) Change number of ordering products<br>
+    c) Submit the order<br>
+    
+8. <b>Orders</b><br>
+    Page is available at the address "http://127.0.0.1:8000/user/orders" after login. You can look at your orders history
     
     
    

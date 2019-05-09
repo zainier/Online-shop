@@ -60,7 +60,10 @@ class OrderController extends BaseController
         return redirect()->route('orders');
     }
 
-
+    public function loadCategories(){
+        $categories = \DB::table('categories')->select('name', 'slug')->get();
+        return $categories;
+    }
     public function getIndex(){
 
         $user_id = Auth::user()->id;
@@ -78,8 +81,9 @@ class OrderController extends BaseController
 
             return Redirect::route('index')->with('error','There is no order.');
         }
-
+        $categories = $this->loadCategories();
         return View::make('order')
-            ->with('orders', $orders);
+            ->with('orders', $orders)
+             ->with('categories', $categories);
     }
 }
