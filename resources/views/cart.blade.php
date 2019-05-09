@@ -12,7 +12,7 @@
 
 </head>
 <body style="background:#dddddd">
-@include('includes.header')
+@include('header')
 <div class="container" style="width:60%">
 
 

@@ -19,26 +19,22 @@
     </style>
 </head>
 <body>
+    @include('header')
 
 
 <div class="container">
-    <div class="row" >
-        <ol class="breadcrumb">
-            <li><a href="{{url('/products')}}">Strona głowna</a></li>
-            <li><a href='products.blade.php?category=$item_cat_id'>{{$product->Id_Category}}</a></li>
-            <li class='active'><b>{{$product->ProductName}}</b></li>
 
-        </ol>
-    </div>
     <div class="row" >
 
 					<div class='col-md-4' style='height:400px; '>
 						<h3 class='pp-title'><b>{{$product->Name}}</b></h3>
 						<div class='top' style='height:300px; width:400px;  '><img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=300px width=400px style='border-radius:8px;'></div>
 
-						<div style='text-align:right; font-size:30px; color:red;'><b>{{$product->ProductValue}} zł / {{$product->UnitOfMeasurement}}</b></div>
+						<div style='text-align:right; font-size:30px; color:red;'><b>{{$product->Value}} zł / {{$product->UnitOfMeasurement}}</b></div>
 					</div>
+                    <div class='col-md-4'>
 
+                    </div>
 
 
 
@@ -47,8 +43,27 @@
 
         <ul class="list-group" >
             <aside class="col-md-4" style="margin-left:350px;  ">
+                <ul class="list-group" >
+                    <li class="list-group-item">
+                        <div class="row" style="background:#fafafa; border-radius:15px;" >
+                        <form action="/cart/add"  type="hidden" name="add_to_cart" method="post" accept-charset="UTF-8">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="product" value="{{$product->Id_Product}}" />
+                            <select class='form-control' name="amount" style="width: ;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p align="center"><button class="btn btn-success">Dodaj do koszyka</button></p>
+                        </form>
+                    </div>
+                    </li>
+                </ul>
+            </aside>
 
-                <br>
+            <aside class="col-md-4" style="margin-left:350px;  ">
                 <ul class="list-group" >
                     <li class="list-group-item">
                         <div class="row" style="background:#fafafa; border-radius:15px;" >

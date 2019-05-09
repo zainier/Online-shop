@@ -50,6 +50,7 @@ class ProductController extends Controller
             ->where(function ($query) use ($product) {
                 $query->where('Id_Category', '=', $product->Id_Category);
             })->get();
-        return view('selectedProduct', compact('product', 'similar_product'));
+            $categories = $this->loadCategories();
+        return view('selectedProduct', ['categories' => $categories],compact('product', 'similar_product'));
     }
 }

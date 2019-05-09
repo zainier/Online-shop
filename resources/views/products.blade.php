@@ -16,7 +16,7 @@
 <div class="container">
     <div class="row" style="background:#dddddd">
         @foreach($products as $product)
-        <div class='col-md-3' style='color:red; background:#dddddd'>
+        <div class='col-md-4' style='color:red; background:#dddddd'>
             <div class='col-md-12 single-item noPadding' style='background:white'>
                 <div class='top' style='padding-top:15px;'>
                     <img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=150px width=200px>
@@ -24,7 +24,8 @@
                 <div class='bottom'>
                     <h3 class='item-title' align='center'>
                         <a href="{{ route('show.product', $product->Name) }}"><b>{{$product->Name}}</b></a>
-                                                <div> <form action="/cart/add" name="add_to_cart" method="post" accept-charset="UTF-8">
+                        <div>
+                            <form action="/cart/add" name="add_to_cart" method="post" accept-charset="UTF-8">
                         {!! csrf_field() !!}
                         <input type="hidden" name="product" value="{{$product->Id_Product}}" />
                         <select name="amount" style="width: 100%;">
@@ -40,8 +41,8 @@
                         <div class='pull-right' style='font-size:20px; margin-right:20px;'><b>{{$product->Value}} zl</b></div>
                         <div class='clearfix'></div>
                         </h3>
-                        <div class='pull-right' style='font-size:20px; margin-right:20px;'><b>{{$product->Value}} zl</b></div>
-                        <div class='clearfix'></div>
+
+
                 </div>
             </div>
         </div>

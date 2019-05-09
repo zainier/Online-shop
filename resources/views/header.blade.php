@@ -19,6 +19,11 @@ border-color: #080808; width:100%; ">
             </a>
         </li>
         <li style="list-style-type: none;">
+            <a href='{{URL::route('orders')}}' class="navbar-brand" style="font-size:18px; margin-right:100px;">
+                <span class="glyphicon glyphicon-list d-inline-block align-top" style="margin-right:8px;"></span>Moje zamowienia
+            </a>
+        </li>
+        <li style="list-style-type: none;">
             <a href="{{action('LoginController@logout') }}" class="navbar-brand" style="font-size:18px;margin-right:5px;">
                 <span class="glyphicon glyphicon-log-in d-inline-block align-top" style="margin-right:8px; "></span>Wyloguj się
             </a>

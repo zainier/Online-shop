@@ -54,7 +54,10 @@ class CartController extends BaseController {
       return redirect()->route('cart');
   }
 
-
+  public function loadCategories(){
+      $categories = \DB::table('categories')->select('name', 'slug')->get();
+      return $categories;
+  }
   public function getIndex(){
 
     $user_id = Auth::user()->id;
@@ -67,13 +70,14 @@ class CartController extends BaseController {
 
       return Redirect::route('index')->with('error','Your cart is empty');
     }
-    
+    $categories = $this->loadCategories();
     return View::make('cart')
           ->with('cart_products', $cart_products)
-          ->with('cart_total',$cart_total);
+          ->with('cart_total',$cart_total)
+          ->with('categories', $categories);
   }
       public function update() {
-        
+
         $user_id = Auth::user()->id;
 
         $amount = Input::get('amount');
