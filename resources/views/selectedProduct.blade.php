@@ -16,6 +16,7 @@
             font-size: 40px;
             height: 70px;
         }
+
     </style>
 </head>
 <body>
@@ -29,18 +30,10 @@
 					<div class='col-md-4' style='height:400px; '>
 						<h3 class='pp-title'><b>{{$product->Name}}</b></h3>
 						<div class='top' style='height:300px; width:400px;  '><img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=300px width=400px style='border-radius:8px;'></div>
-
 						<div style='text-align:right; font-size:30px; color:red;'><b>{{$product->Value}} zł / {{$product->UnitOfMeasurement}}</b></div>
 					</div>
                     <div class='col-md-4'>
-
                     </div>
-
-
-
-
-
-
         <ul class="list-group" >
             <aside class="col-md-4" style="margin-left:350px;  ">
                 <ul class="list-group" >
@@ -74,15 +67,25 @@
                 </ul>
             </aside>
         </ul>
-    </div>
-    <br>
-    <div class="page-header"  >
-        <h2 style="">Inne propozycji</h2>
-    </div>
-    <div class="row" style='border-radius:8px;' >
+
+                 <div class="col-sm-12 col-md-6 " style="margin-top:175px; margin-right: 800px; ">
+                    <h3 class="text-left">SIMILAR PRODUCTS</h3><br>
+                      @foreach($similar_product->slice(0, 4) as $similar)
+                        <div class="col-xs-6 col-md-6 text-center">
+                    <a href="{{ route('show.product', $similar->Name) }}">
+                            <img src='{{url('../images/products/'.$similar->Name.'.jpg')}}' height=150px width=200px >
+                            <p id="Similar-Title">{{ str_limit($similar->Name, $limit = 28, $end = '...') }}</p>
+
+                    </a>
+                </div>
+            @endforeach
+        </div>
 
     </div>
-</div><br><br><br><br>
+
+</div>
+
+<br><br><br><br>
 @include('includes.footer')
 </body>
 </html>

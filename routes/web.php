@@ -55,7 +55,4 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('product/{Name}', [
-    'uses' => '\App\Http\Controllers\ProductController@show',
-    'as'   => 'show.product',
-]);
+Route::get('product/{Name}',array('before'=>'auth.basic','as'  => 'show.product','uses'=>'ProductController@show'));

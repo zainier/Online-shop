@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
+use View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -46,11 +47,15 @@ class ProductController extends Controller
         // From Traits/CartTrait.php
         // ( Count how many items in Cart for signed in user )
        // $cart_count = $this->countProductsInCart();
-        $similar_product = Product::where('Id_Product', '!=', $product->Id_Product)
+        $similar_product= \DB::table('products')->where('Id_Product', '!=', $product->Id_Product)
             ->where(function ($query) use ($product) {
                 $query->where('Id_Category', '=', $product->Id_Category);
             })->get();
             $categories = $this->loadCategories();
-        return view('selectedProduct', ['categories' => $categories],compact('product', 'similar_product'));
+            return View::make('selectedProduct')
+            ->with('product',$product)
+            ->with('similar_product',$similar_product)
+            ->with('categories', $categories);
+    //return view('selectedProduct', compact('product', 'similar_product', 'categories'));
     }
 }
