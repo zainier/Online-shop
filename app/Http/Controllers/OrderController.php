@@ -41,7 +41,8 @@ class OrderController extends BaseController
             array(
                 'user_id'=>$user_id,
                 'address'=>$address,
-                'total'=>$cart_total
+                'total'=>$cart_total,
+                'status'=>1
             ));
 
         foreach ($cart_products as $order_products) {
