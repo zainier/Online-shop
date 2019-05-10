@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Session;
 
 class WorkerPanelController extends Controller
 {
-
     public function checkLoginStatus(){
         if (is_null(Session::get('key'))) {
             return redirect('/');

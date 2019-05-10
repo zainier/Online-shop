@@ -18,8 +18,10 @@ class CreateOrdersTable extends Migration
       	    $table->integer('user_id');
      	    $table->text('address');
       	    $table->decimal('total', 10, 2);
-      	    $table->integer('status');
+      	    $table->integer('id_status')->unsigned();
      	    $table->timestamps();
+
+     	    $table->foreign('status')->references('id_status')->on('order_status');
     	});
     }
 
