@@ -54,7 +54,8 @@ Route::get('/order', array('before'=>'auth.basic','uses'=>'OrderController@postO
 
 /* USER'S ORDERS*/
 
-Route::get('worker','WorkerPanelController@checkLoginStatus');
+Route::get('worker','WorkerPanelController@checkLoginStatus')->name('worker');
+Route::get('sent_order/{id_order}','WorkerPanelController@sentOrder')->name('sentOrder');
 Route::get('confirm_order/{id_order}','WorkerPanelController@confirmOrder')->name('confirmOrder');
 Route::get('cancel_order/{id_order}','WorkerPanelController@cancelOrder')->name('cancelOrder');
 

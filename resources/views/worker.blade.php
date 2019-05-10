@@ -33,14 +33,25 @@
 </nav>
 <div class="col-md-6">
     <h1>Panel pracownika - {{ Session::get('name') }}</h1><br>
+    @if(session('alert_error'))
+        <div class="alert alert-danger">
+            {{ session('alert_error') }}
+        </div>
+    @endif
+    @if(session('alert'))
+        <div class="alert alert-success">
+            {{ session('alert') }}
+        </div>
+    @endif
     <div style=" margin: auto;">
         <table  class="table table-bordered" cellspacing="0" width="100%">
             <tr>
-                <th class="th-sm" rowspan="2">Numer zamówienia</th>
+                <th class="th-sm" rowspan="2">№</th>
                 <th class="th-sm" rowspan="2">Czas zamówienia</th>
                 <th class="th-sm" colspan="7">Dane klienta</th>
                 <th class="th-sm" rowspan="2">Do zapłaty</th>
                 <th class="th-sm" rowspan="2">Status</th>
+                <th class="th-sm" rowspan="2">Wysłanie zamówienia</th>
                 <th class="th-sm" rowspan="2">Zatwierdzenie zamówienia</th>
                 <th class="th-sm" rowspan="2">Generowanie faktury</th>
                 <th class="th-sm" rowspan="2">Anulowanie zamówienia</th>
@@ -66,8 +77,12 @@
                     <td style="white-space:nowrap;font-size:11px">{{$order->phonenumber}}</td>
                     <td style="white-space:nowrap;font-size:11px">{{$order->email}}</td>
                     <td style="white-space:nowrap;font-size:11px">{{$order->total}}</td>
-                    <td style="white-space:nowrap;font-size:11px">{{$order->status}}</td>
+                    <td style="white-space:nowrap;font-size:11px">{{$order->type}}</td>
 
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="{{ route('sentOrder', $order->id) }}">
+                            <span class="glyphicon glyphicon-send"></span>Wysłać</a>
+                    </td>
                     <td>
                         <a class="btn btn-success btn-xs" href="{{ route('confirmOrder', $order->id) }}">
                             <span class="glyphicon glyphicon-edit"></span>Zatwierdzić</a>
