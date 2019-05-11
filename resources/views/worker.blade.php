@@ -48,7 +48,7 @@
             <tr>
                 <th class="th-sm" rowspan="2">№</th>
                 <th class="th-sm" rowspan="2">Czas zamówienia</th>
-                <th class="th-sm" colspan="7">Dane klienta</th>
+                <th class="th-sm" colspan="6">Dane klienta</th>
                 <th class="th-sm" rowspan="2">Do zapłaty</th>
                 <th class="th-sm" rowspan="2">Status</th>
                 <th class="th-sm" rowspan="2">Wysłanie zamówienia</th>
@@ -58,8 +58,7 @@
             </tr>
 
             <tr>
-                <th class="th-sm">Imię</th>
-                <th class="th-sm">Nazwisko</th>
+                <th class="th-sm">Klient</th>
                 <th class="th-sm">Adres</th>
                 <th class="th-sm">Kod pocztowy</th>
                 <th class="th-sm">Miasto</th>
@@ -69,8 +68,7 @@
             @foreach($orders as $order)
                 <tr><td style="white-space:nowrap;font-size:11px">{{$order->id}}</td>
                     <td style="white-space:nowrap;font-size:11px">{{$order->created_at}}</td>
-                    <td style="white-space:nowrap;font-size:11px">{{$order->name}}</td>
-                    <td style="white-space:nowrap;font-size:11px">{{$order->surname}}</td>
+                    <td style="white-space:nowrap;font-size:11px">{{$order->name}}  {{$order->surname}}</td>
                     <td style="white-space:nowrap;font-size:11px">{{$order->address}}</td>
                     <td style="white-space:nowrap;font-size:11px">{{$order->postalcode}}</td>
                     <td style="white-space:nowrap;font-size:11px">{{$order->cityName}}</td>
@@ -80,7 +78,7 @@
                     <td style="white-space:nowrap;font-size:11px">{{$order->type}}</td>
 
                     <td>
-                        <a class="btn btn-primary btn-xs" href="{{ route('sentOrder', $order->id) }}">
+                        <a class="btn btn-primary btn-xs" href="{{ route('shipOrder', $order->id) }}">
                             <span class="glyphicon glyphicon-send"></span>Wysłać</a>
                     </td>
                     <td>

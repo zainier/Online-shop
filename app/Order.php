@@ -6,7 +6,7 @@ Class Order extends Model {
 
 protected $table = 'orders';
 
-protected $fillable = array('user_id','address','total','status');
+protected $fillable = array('user_id','address','total','id_status');
 
 public function orderItems()
     {

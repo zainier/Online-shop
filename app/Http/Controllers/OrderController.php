@@ -7,11 +7,14 @@ use App\Order;
 use App\Product;
 use App\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Routing\Controller as BaseController;
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends BaseController
 {
@@ -22,8 +25,6 @@ class OrderController extends BaseController
 
             'address'=>'required'
         );
-
-
 
         $user_id = Auth::user()->id;
         $address = Auth::user()->address;
@@ -42,7 +43,7 @@ class OrderController extends BaseController
                 'user_id'=>$user_id,
                 'address'=>$address,
                 'total'=>$cart_total,
-                'status'=>1
+                'id_status'=>1
             ));
 
         foreach ($cart_products as $order_products) {
@@ -86,4 +87,16 @@ class OrderController extends BaseController
             ->with('orders', $orders)
              ->with('categories', $categories);
     }
+
+    public function ship($orderId, $status, $products)
+    {
+        $email = DB::table('orders')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->select('email')
+            ->where('orders.id','=', $orderId)
+            ->value('email');
+
+        Mail::to($email)->send(new OrderShipped($orderId, $status, $products));
+    }
+
 }
