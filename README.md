@@ -66,7 +66,26 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
     Page is available at the address "http://127.0.0.1:8000/worker". You must have worker privileges to log in.<br>
     Available features:<br>
     a) Show user's orders<br>
+
     b) Сhange the status of the order<br>
+    ![image](https://user-images.githubusercontent.com/26176166/57583973-7407c380-74d6-11e9-9b3a-52f79b88b341.png)
+    
+    c) Automatic sending of messages to the client after changing the status of the order<br>
+    ![image](https://user-images.githubusercontent.com/26176166/57584044-4707e080-74d7-11e9-885e-647c746b81ac.png)
+    ![image](https://user-images.githubusercontent.com/26176166/57584113-107e9580-74d8-11e9-814d-cfbc3c71616f.png)<br>
+    ![image](https://user-images.githubusercontent.com/26176166/57584198-dfeb2b80-74d8-11e9-9331-0c40e00441d5.png)<br>
+    ![image](https://user-images.githubusercontent.com/26176166/57584411-4a9d6680-74db-11e9-89b9-1b9fae315668.png)
+
+
+
+
+
+
+
+
+
+    
+
 
 7. <b>Cart and making orders</b><br>
     Page is available at the address "http://127.0.0.1:8000/cart"<br>
