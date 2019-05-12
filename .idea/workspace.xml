@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ef2f2ae-a4d5-4596-a696-605e50323bd4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorkerPanelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorkerPanelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/OrderShipped.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/OrderShipped.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/orders/shipped.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/orders/shipped.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="7ef2f2ae-a4d5-4596-a696-605e50323bd4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,7 +370,7 @@
       <workItem from="1557470947817" duration="1106000" />
       <workItem from="1557492048536" duration="17935000" />
       <workItem from="1557571929112" duration="24978000" />
-      <workItem from="1557658384160" duration="10814000" />
+      <workItem from="1557658384160" duration="11058000" />
     </task>
     <task id="LOCAL-00001" summary="add worker panel[beta]">
       <created>1557440385802</created>
@@ -406,15 +400,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557598115320</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add send email into worker panel[completed]">
+      <created>1557675121683</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1557675121711</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86699000" />
+    <option name="totallyTimeSpent" value="86943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22390318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -471,7 +471,8 @@
     <MESSAGE value="correct problems with images in admin panel" />
     <MESSAGE value="add confirm/cancel/send order into worker panel" />
     <MESSAGE value="add send email into worker panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="add send email into worker panel" />
+    <MESSAGE value="add send email into worker panel[completed]" />
+    <option name="LAST_COMMIT_MESSAGE" value="add send email into worker panel[completed]" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/web.config">
