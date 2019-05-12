@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\OrderConfirmed;
+use App\Mail\OrderPlaced;
 use App\Order;
 use App\Product;
 use App\Cart;
@@ -18,6 +20,10 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends BaseController
 {
+
+    public static $ORDER_CONFIRMED = 2;
+    public static $ORDER_CANCELED = 5;
+    public static $ORDER_SHIPPED = 4;
 
     public function postOrder()
     {
@@ -58,6 +64,17 @@ class OrderController extends BaseController
 
         Cart::where('user_id','=',$user_id)->delete();
 
+        //Send email to Client
+        $order = Order::all()->last();
+        $products = self::getOrderProducts($order->id);
+        $data = (['id_order' => $order->id,
+            'status' => OrderController::getStatus($order->id)->type,
+            'products' => $products,
+            'price' => $order->total,
+            'created_at' => $order->created_at]);
+
+        self::placed($data);
+
         return redirect()->route('orders');
     }
 
@@ -88,15 +105,56 @@ class OrderController extends BaseController
              ->with('categories', $categories);
     }
 
-    public function ship($orderId, $status, $products)
+    public static function updateStatus($id_order, $status){
+        DB::table('orders')
+            ->where('id', $id_order)
+            ->update(['id_status' => $status]);
+    }
+
+
+    public static function confirm($data){
+        Mail::to(OrderController::getUserEmail($data['id_order']))->send(new OrderConfirmed($data));
+    }
+
+    public static function ship($data)
     {
+        Mail::to(OrderController::getUserEmail($data['id_order']))->send(new OrderShipped($data));
+    }
+
+    private function placed($data){
+        Mail::to(OrderController::getUserEmail($data['id_order']))->send(new OrderPlaced($data));
+    }
+
+    private static function getUserEmail($orderId){
         $email = DB::table('orders')
             ->join('users', 'orders.user_id', '=', 'users.id')
             ->select('email')
             ->where('orders.id','=', $orderId)
             ->value('email');
 
-        Mail::to($email)->send(new OrderShipped($orderId, $status, $products));
+        return $email;
     }
+
+    private function getOrderProducts($id_order){
+        $products =  DB::table('order_product')
+            ->join('products', 'products.Id_Product', '=', 'order_product.Id_Product')
+            ->select('Name','amount','total')
+            ->where('order_id', '=', $id_order)
+            ->get();
+
+        return $products;
+    }
+
+    public static function getStatus($id_order){
+        $status = DB::table('orders')
+            ->join('order_status', 'orders.id_status', '=', 'order_status.id_status')
+            ->select('order_status.id_status', 'type')
+            ->where('id', $id_order)
+            ->get()->values();
+
+        return $status[0];
+    }
+
+
 
 }

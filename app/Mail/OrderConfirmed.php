@@ -7,11 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderShipped extends Mailable
+class OrderConfirmed extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = 'Order Shipped';
+    public $subject = 'Order Confirmed';
     public $id_order;
     public $status;
 
@@ -33,6 +33,6 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject)->markdown('emails.orders.shipped');
+        return $this->subject($this->subject)->markdown('emails.orders.confirmed');
     }
 }

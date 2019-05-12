@@ -7,13 +7,16 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderShipped extends Mailable
+class OrderPlaced extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = 'Order Shipped';
+    public $subject = 'Order Placed';
     public $id_order;
     public $status;
+    public $products;
+    public $created_at;
+    public $price;
 
     /**
      * Create a new message instance.
@@ -24,6 +27,9 @@ class OrderShipped extends Mailable
     {
         $this->id_order = $data['id_order'];
         $this->status = $data['status'];
+        $this->products = $data['products'];
+        $this->created_at = $data['created_at'];
+        $this->price = $data['price'];
     }
 
     /**
@@ -33,6 +39,6 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject)->markdown('emails.orders.shipped');
+        return $this->subject($this->subject)->markdown('emails.orders.placed');
     }
 }
