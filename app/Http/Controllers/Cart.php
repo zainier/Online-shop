@@ -1,7 +1,6 @@
 <?php
 namespace App;
 use Product;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model {
@@ -19,4 +18,9 @@ class Cart extends Model {
     public function User() {
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function presentPrice($price)
+  {
+      $myPrice = self::money_format('$%i', $this->$price / 100);
+     return $myPrice;
+  }
 }

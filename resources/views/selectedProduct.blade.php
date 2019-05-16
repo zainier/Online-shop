@@ -7,10 +7,12 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
     <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
+
     <style>
         .btn{
             font-size: 40px;
@@ -51,6 +53,7 @@
                             </select>
                             <p align="center"><button class="btn btn-success">Dodaj do koszyka</button></p>
                         </form>
+
                     </div>
                     </li>
                 </ul>
@@ -67,6 +70,7 @@
                 </ul>
             </aside>
         </ul>
+
 
                  <div class="col-sm-12 col-md-6 " style="margin-top:175px; margin-right: 800px; ">
                     <h3 class="text-left">SIMILAR PRODUCTS</h3><br>

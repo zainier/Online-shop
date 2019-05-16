@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../css/responsive.css">
 <nav class="navbar navbar-header" style="background-color: #222;
 border-color: #080808; width:100%; ">
     <div class="navbar-header" style="" >

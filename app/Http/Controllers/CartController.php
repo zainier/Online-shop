@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+
 use App\Product as Product;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -48,7 +49,7 @@ class CartController extends BaseController {
         'user_id'=>$user_id,
         'Id_Product'=>$product_id->Id_Product,
         'amount'=>$amount,
-        'total'=>$total
+        'total'=>$total,
         ));
 
       return redirect()->route('cart');
@@ -72,9 +73,19 @@ class CartController extends BaseController {
     }
     $categories = $this->loadCategories();
     return View::make('cart')
-          ->with('cart_products', $cart_products)
-          ->with('cart_total',$cart_total)
-          ->with('categories', $categories);
+
+          ->with([
+              'cart_products'=> $cart_products,
+              'cart_total'=>$cart_total,
+              'categories'=> $categories,
+            'discount' => getNumbers()->get('discount'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'newTax' => getNumbers()->get('newTax'),
+            'newTotal' => getNumbers()->get('newTotal'),
+        ]);;
+/*->with('cart_products', $cart_products)
+->with('cart_total',$cart_total)
+->with('categories', $categories)*/
   }
       public function update() {
 
@@ -107,5 +118,11 @@ class CartController extends BaseController {
 
     return redirect()->route('cart');
   }
+
+  public function presentPrice($price)
+{
+    $myPrice = self::money_format('$%i', $this->$price / 100);
+   return $myPrice;
+}
 
 }

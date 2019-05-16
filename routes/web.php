@@ -59,6 +59,9 @@ Route::get('ship_order/{id_order}','WorkerPanelController@shipOrder')->name('shi
 Route::get('confirm_order/{id_order}','WorkerPanelController@confirmOrder')->name('confirmOrder');
 Route::get('cancel_order/{id_order}','WorkerPanelController@cancelOrder')->name('cancelOrder');
 
+/* USER'S Coupons*/
+Route::post('/coupon','CouponsController@store')->name('coupon.store');
+Route::delete('/coupon','CouponsController@destroy')->name('coupon.destroy');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
