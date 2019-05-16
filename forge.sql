@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2019 at 05:36 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Czas generowania: 16 Maj 2019, 22:40
+-- Wersja serwera: 10.1.36-MariaDB
+-- Wersja PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `forge`
+-- Baza danych: `sklep`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carts`
+-- Struktura tabeli dla tabeli `carts`
 --
 
 CREATE TABLE `carts` (
@@ -39,16 +39,18 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `carts`
+-- Zrzut danych tabeli `carts`
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `Id_Product`, `amount`, `total`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 1, '2.00', '2019-05-10 12:15:06', '2019-05-10 12:15:06');
+(1, 3, 1, 1, '2.00', '2019-05-10 12:15:06', '2019-05-10 12:15:06'),
+(29, 11, 27, 5, '70.00', '2019-05-16 18:12:53', '2019-05-16 18:12:53'),
+(30, 11, 73, 5, '59.95', '2019-05-16 18:13:15', '2019-05-16 18:13:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Struktura tabeli dla tabeli `categories`
 --
 
 CREATE TABLE `categories` (
@@ -62,7 +64,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `categories`
+-- Zrzut danych tabeli `categories`
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
@@ -79,7 +81,7 @@ INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Struktura tabeli dla tabeli `cities`
 --
 
 CREATE TABLE `cities` (
@@ -88,7 +90,7 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cities`
+-- Zrzut danych tabeli `cities`
 --
 
 INSERT INTO `cities` (`Id_City`, `cityName`) VALUES
@@ -121,7 +123,29 @@ INSERT INTO `cities` (`Id_City`, `cityName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_rows`
+-- Struktura tabeli dla tabeli `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `code` varchar(30) COLLATE utf8_bin NOT NULL,
+  `type` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `percent_off` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Zrzut danych tabeli `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `code`, `type`, `value`, `percent_off`) VALUES
+(1, 'ABC123', 'fixed', 30, NULL),
+(2, 'DFE456', 'percent', NULL, 50);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `data_rows`
 --
 
 CREATE TABLE `data_rows` (
@@ -141,7 +165,7 @@ CREATE TABLE `data_rows` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `data_rows`
+-- Zrzut danych tabeli `data_rows`
 --
 
 INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
@@ -218,7 +242,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_types`
+-- Struktura tabeli dla tabeli `data_types`
 --
 
 CREATE TABLE `data_types` (
@@ -240,7 +264,7 @@ CREATE TABLE `data_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `data_types`
+-- Zrzut danych tabeli `data_types`
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
@@ -256,7 +280,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Struktura tabeli dla tabeli `menus`
 --
 
 CREATE TABLE `menus` (
@@ -267,7 +291,7 @@ CREATE TABLE `menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `menus`
+-- Zrzut danych tabeli `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -276,7 +300,7 @@ INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_items`
+-- Struktura tabeli dla tabeli `menu_items`
 --
 
 CREATE TABLE `menu_items` (
@@ -296,7 +320,7 @@ CREATE TABLE `menu_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `menu_items`
+-- Zrzut danych tabeli `menu_items`
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
@@ -320,7 +344,7 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktura tabeli dla tabeli `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -330,7 +354,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Zrzut danych tabeli `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -372,7 +396,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Struktura tabeli dla tabeli `orders`
 --
 
 CREATE TABLE `orders` (
@@ -386,7 +410,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `orders`
+-- Zrzut danych tabeli `orders`
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `address`, `total`, `id_status`, `created_at`, `updated_at`) VALUES
@@ -394,12 +418,17 @@ INSERT INTO `orders` (`id`, `user_id`, `address`, `total`, `id_status`, `created
 (52, 9, 'Grunwaldzka 10/99', '9.40', 5, '2019-05-09 17:52:46', '2019-05-09 17:52:46'),
 (53, 8, 'Kolomojska 54/19', '3.10', 4, '2019-05-10 04:58:50', '2019-05-10 04:58:50'),
 (54, 10, 'test', '0.20', 4, '2019-05-11 10:47:07', '2019-05-11 10:47:07'),
-(63, 10, 'test', '10.98', 4, '2019-05-12 12:57:29', '2019-05-12 12:57:29');
+(63, 10, 'test', '10.98', 4, '2019-05-12 12:57:29', '2019-05-12 12:57:29'),
+(64, 11, 'sdfsf', '1.99', 1, '2019-05-16 14:19:47', '2019-05-16 14:19:47'),
+(65, 11, 'sdfsf', '0.00', 1, '2019-05-16 14:48:21', '2019-05-16 14:48:21'),
+(66, 11, 'sdfsf', '27.52', 1, '2019-05-16 16:35:40', '2019-05-16 16:35:40'),
+(67, 11, 'sdfsf', '149.99', 1, '2019-05-16 17:20:44', '2019-05-16 17:20:44'),
+(68, 11, 'sdfsf', '40.00', 1, '2019-05-16 18:11:57', '2019-05-16 18:11:57');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_product`
+-- Struktura tabeli dla tabeli `order_product`
 --
 
 CREATE TABLE `order_product` (
@@ -412,7 +441,7 @@ CREATE TABLE `order_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `order_product`
+-- Zrzut danych tabeli `order_product`
 --
 
 INSERT INTO `order_product` (`id`, `order_id`, `Id_Product`, `amount`, `price`, `total`) VALUES
@@ -440,12 +469,20 @@ INSERT INTO `order_product` (`id`, `order_id`, `Id_Product`, `amount`, `price`, 
 (48, 62, 1, '5.00', '2.00', '10.00'),
 (49, 62, 47, '3.00', '2.49', '7.47'),
 (50, 63, 1, '3.00', '2.00', '6.00'),
-(51, 63, 47, '2.00', '2.49', '4.98');
+(51, 63, 47, '2.00', '2.49', '4.98'),
+(52, 64, 2, '1.00', '1.99', '1.99'),
+(53, 66, 2, '3.00', '1.99', '5.97'),
+(54, 66, 32, '5.00', '4.31', '21.55'),
+(55, 67, 1, '4.00', '2.00', '8.00'),
+(56, 67, 27, '5.00', '14.00', '70.00'),
+(57, 67, 27, '5.00', '14.00', '70.00'),
+(58, 67, 2, '1.00', '1.99', '1.99'),
+(59, 68, 12, '5.00', '8.00', '40.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_status`
+-- Struktura tabeli dla tabeli `order_status`
 --
 
 CREATE TABLE `order_status` (
@@ -456,7 +493,7 @@ CREATE TABLE `order_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `order_status`
+-- Zrzut danych tabeli `order_status`
 --
 
 INSERT INTO `order_status` (`id_status`, `type`, `created_at`, `updated_at`) VALUES
@@ -468,7 +505,7 @@ INSERT INTO `order_status` (`id_status`, `type`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pages`
+-- Struktura tabeli dla tabeli `pages`
 --
 
 CREATE TABLE `pages` (
@@ -487,7 +524,7 @@ CREATE TABLE `pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `pages`
+-- Zrzut danych tabeli `pages`
 --
 
 INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
@@ -496,7 +533,7 @@ INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `sl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struktura tabeli dla tabeli `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -508,7 +545,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Struktura tabeli dla tabeli `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -520,7 +557,7 @@ CREATE TABLE `permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `permissions`
+-- Zrzut danych tabeli `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`) VALUES
@@ -579,7 +616,7 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission_role`
+-- Struktura tabeli dla tabeli `permission_role`
 --
 
 CREATE TABLE `permission_role` (
@@ -588,7 +625,7 @@ CREATE TABLE `permission_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `permission_role`
+-- Zrzut danych tabeli `permission_role`
 --
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
@@ -646,7 +683,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- Struktura tabeli dla tabeli `posts`
 --
 
 CREATE TABLE `posts` (
@@ -668,7 +705,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `posts`
+-- Zrzut danych tabeli `posts`
 --
 
 INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `featured`, `created_at`, `updated_at`) VALUES
@@ -680,7 +717,7 @@ INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `ex
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktura tabeli dla tabeli `products`
 --
 
 CREATE TABLE `products` (
@@ -698,7 +735,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `products`
+-- Zrzut danych tabeli `products`
 --
 
 INSERT INTO `products` (`Id_Product`, `Id_WarehouseDelivery`, `Id_Category`, `Name`, `NajlepszaOferta`, `UnitOfMeasurement`, `Manufacturer`, `Value`, `AmountAvailable`, `created_at`, `updated_at`) VALUES
@@ -797,7 +834,7 @@ INSERT INTO `products` (`Id_Product`, `Id_WarehouseDelivery`, `Id_Category`, `Na
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktura tabeli dla tabeli `roles`
 --
 
 CREATE TABLE `roles` (
@@ -809,7 +846,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Zrzut danych tabeli `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
@@ -820,7 +857,7 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Struktura tabeli dla tabeli `settings`
 --
 
 CREATE TABLE `settings` (
@@ -835,7 +872,7 @@ CREATE TABLE `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `settings`
+-- Zrzut danych tabeli `settings`
 --
 
 INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`, `group`) VALUES
@@ -853,7 +890,7 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `translations`
+-- Struktura tabeli dla tabeli `translations`
 --
 
 CREATE TABLE `translations` (
@@ -868,7 +905,7 @@ CREATE TABLE `translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `translations`
+-- Zrzut danych tabeli `translations`
 --
 
 INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
@@ -906,7 +943,7 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktura tabeli dla tabeli `users`
 --
 
 CREATE TABLE `users` (
@@ -930,7 +967,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `surname`, `sex`, `address`, `postalcode`, `Id_City`, `phonenumber`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
@@ -939,12 +976,13 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `surname`, `sex`, `address`, `post
 (4, 3, 'Konrad', 'Kirowski', 'M', 'Strutynska 14/19', '33-005', 24, '777888999', 'worker@gmail.com', 'users/default.png', NULL, '$2y$10$oT94wzdgZVqPwNGaxjJXRuRD1ag/17UV7aYMIvethyHFzqtGUEevC', NULL, NULL, '2019-04-07 23:28:52', '2019-04-07 23:28:52'),
 (8, 2, 'Adam', 'Henc', 'M', 'Kolomojska 54/19', '32-998', 6, '999888666', 'user1@gmail.com', 'users/default.png', NULL, '$2y$10$jUgPmEMBFZKjWyXv9P/SHueNoul/Alb3RINfVx1YUApbI2qvTnpI6', NULL, NULL, '2019-05-09 17:48:15', '2019-05-09 17:48:15'),
 (9, 2, 'Jan', 'Petelski', 'M', 'Grunwaldzka 10/99', '33-111', 5, '949577666', 'user2@gmail.com', 'users/default.png', NULL, '$2y$10$wom61bqzuuoEo.5kaCD8eeASwp.dG/yNQbIdSBSqWCAdnE8shelLC', NULL, NULL, '2019-05-09 17:49:11', '2019-05-09 17:49:11'),
-(10, 2, 'Test', 'Test', 'M', 'test', '44-009', 2, '999888666', '239545@student.pwr.edu.pl', 'users/default.png', NULL, '$2y$10$GJwCVnY4WFRy2YnLCoje9eJ5GoIFF9yqONVC24FoffqKXLWuLT9wi', NULL, NULL, '2019-05-11 10:44:12', '2019-05-11 10:44:12');
+(10, 2, 'Test', 'Test', 'M', 'test', '44-009', 2, '999888666', '239545@student.pwr.edu.pl', 'users/default.png', NULL, '$2y$10$GJwCVnY4WFRy2YnLCoje9eJ5GoIFF9yqONVC24FoffqKXLWuLT9wi', NULL, NULL, '2019-05-11 10:44:12', '2019-05-11 10:44:12'),
+(11, 2, 'Rostysalv', 'Tymkiv', 'M', 'sdfsf', '51-628', 5, '123123123', 'rt@smart.com', 'users/default.png', NULL, '$2y$10$AE0Ips8YJnPnaumAx5HwOuPuusG5sl0Vtbzxz02gTLSQUgVbqk6Ki', NULL, NULL, '2019-05-16 14:19:40', '2019-05-16 14:19:40');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_roles`
+-- Struktura tabeli dla tabeli `user_roles`
 --
 
 CREATE TABLE `user_roles` (
@@ -955,7 +993,7 @@ CREATE TABLE `user_roles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `warehousedeliverers`
+-- Struktura tabeli dla tabeli `warehousedeliverers`
 --
 
 CREATE TABLE `warehousedeliverers` (
@@ -970,7 +1008,7 @@ CREATE TABLE `warehousedeliverers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `warehousedeliverers`
+-- Zrzut danych tabeli `warehousedeliverers`
 --
 
 INSERT INTO `warehousedeliverers` (`REGON`, `NIP`, `DelivererName`, `DelivererAddress`, `DelivererCityID`, `DelivererPostalCode`, `DelivererPhoneNumber`, `DelivererEmail`) VALUES
@@ -988,7 +1026,7 @@ INSERT INTO `warehousedeliverers` (`REGON`, `NIP`, `DelivererName`, `DelivererAd
 -- --------------------------------------------------------
 
 --
--- Table structure for table `warehousedeliveries`
+-- Struktura tabeli dla tabeli `warehousedeliveries`
 --
 
 CREATE TABLE `warehousedeliveries` (
@@ -999,25 +1037,25 @@ CREATE TABLE `warehousedeliveries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `warehousedeliveries`
+-- Zrzut danych tabeli `warehousedeliveries`
 --
 
 INSERT INTO `warehousedeliveries` (`WarehouseDeliveryID`, `DelivererRegon`, `ProductID`, `ProductsCount`) VALUES
 (1, '853135426', 2, 400);
 
 --
--- Indexes for dumped tables
+-- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `carts`
+-- Indeksy dla tabeli `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Id_Product` (`Id_Product`);
 
 --
--- Indexes for table `categories`
+-- Indeksy dla tabeli `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
@@ -1025,20 +1063,26 @@ ALTER TABLE `categories`
   ADD KEY `categories_parent_id_foreign` (`parent_id`);
 
 --
--- Indexes for table `cities`
+-- Indeksy dla tabeli `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`Id_City`);
 
 --
--- Indexes for table `data_rows`
+-- Indeksy dla tabeli `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `data_rows`
 --
 ALTER TABLE `data_rows`
   ADD PRIMARY KEY (`id`),
   ADD KEY `data_rows_data_type_id_foreign` (`data_type_id`);
 
 --
--- Indexes for table `data_types`
+-- Indeksy dla tabeli `data_types`
 --
 ALTER TABLE `data_types`
   ADD PRIMARY KEY (`id`),
@@ -1046,65 +1090,65 @@ ALTER TABLE `data_types`
   ADD UNIQUE KEY `data_types_slug_unique` (`slug`);
 
 --
--- Indexes for table `menus`
+-- Indeksy dla tabeli `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `menus_name_unique` (`name`);
 
 --
--- Indexes for table `menu_items`
+-- Indeksy dla tabeli `menu_items`
 --
 ALTER TABLE `menu_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `menu_items_menu_id_foreign` (`menu_id`);
 
 --
--- Indexes for table `migrations`
+-- Indeksy dla tabeli `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `orders`
+-- Indeksy dla tabeli `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_product`
+-- Indeksy dla tabeli `order_product`
 --
 ALTER TABLE `order_product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_status`
+-- Indeksy dla tabeli `order_status`
 --
 ALTER TABLE `order_status`
   ADD PRIMARY KEY (`id_status`);
 
 --
--- Indexes for table `pages`
+-- Indeksy dla tabeli `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `pages_slug_unique` (`slug`);
 
 --
--- Indexes for table `password_resets`
+-- Indeksy dla tabeli `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `permissions`
+-- Indeksy dla tabeli `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `permissions_key_index` (`key`);
 
 --
--- Indexes for table `permission_role`
+-- Indeksy dla tabeli `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
@@ -1112,14 +1156,14 @@ ALTER TABLE `permission_role`
   ADD KEY `permission_role_role_id_index` (`role_id`);
 
 --
--- Indexes for table `posts`
+-- Indeksy dla tabeli `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `posts_slug_unique` (`slug`);
 
 --
--- Indexes for table `products`
+-- Indeksy dla tabeli `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`Id_Product`),
@@ -1127,28 +1171,28 @@ ALTER TABLE `products`
   ADD KEY `WarehouseDeliveryIDFK` (`Id_WarehouseDelivery`);
 
 --
--- Indexes for table `roles`
+-- Indeksy dla tabeli `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_unique` (`name`);
 
 --
--- Indexes for table `settings`
+-- Indeksy dla tabeli `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `settings_key_unique` (`key`);
 
 --
--- Indexes for table `translations`
+-- Indeksy dla tabeli `translations`
 --
 ALTER TABLE `translations`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `translations_table_name_column_name_foreign_key_locale_unique` (`table_name`,`column_name`,`foreign_key`,`locale`);
 
 --
--- Indexes for table `users`
+-- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -1157,7 +1201,7 @@ ALTER TABLE `users`
   ADD KEY `users_id_city_foreign` (`Id_City`);
 
 --
--- Indexes for table `user_roles`
+-- Indeksy dla tabeli `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`user_id`,`role_id`),
@@ -1165,14 +1209,14 @@ ALTER TABLE `user_roles`
   ADD KEY `user_roles_role_id_index` (`role_id`);
 
 --
--- Indexes for table `warehousedeliverers`
+-- Indeksy dla tabeli `warehousedeliverers`
 --
 ALTER TABLE `warehousedeliverers`
   ADD PRIMARY KEY (`REGON`),
   ADD KEY `DelivererCityIDFK` (`DelivererCityID`);
 
 --
--- Indexes for table `warehousedeliveries`
+-- Indeksy dla tabeli `warehousedeliveries`
 --
 ALTER TABLE `warehousedeliveries`
   ADD PRIMARY KEY (`WarehouseDeliveryID`),
@@ -1184,177 +1228,183 @@ ALTER TABLE `warehousedeliveries`
 --
 
 --
--- AUTO_INCREMENT for table `carts`
+-- AUTO_INCREMENT dla tabeli `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT dla tabeli `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `cities`
+-- AUTO_INCREMENT dla tabeli `cities`
 --
 ALTER TABLE `cities`
   MODIFY `Id_City` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `data_rows`
+-- AUTO_INCREMENT dla tabeli `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT dla tabeli `data_rows`
 --
 ALTER TABLE `data_rows`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT for table `data_types`
+-- AUTO_INCREMENT dla tabeli `data_types`
 --
 ALTER TABLE `data_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `menus`
+-- AUTO_INCREMENT dla tabeli `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `menu_items`
+-- AUTO_INCREMENT dla tabeli `menu_items`
 --
 ALTER TABLE `menu_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT dla tabeli `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
--- AUTO_INCREMENT for table `order_product`
+-- AUTO_INCREMENT dla tabeli `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
--- AUTO_INCREMENT for table `order_status`
+-- AUTO_INCREMENT dla tabeli `order_status`
 --
 ALTER TABLE `order_status`
   MODIFY `id_status` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `pages`
+-- AUTO_INCREMENT dla tabeli `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT dla tabeli `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT dla tabeli `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT dla tabeli `products`
 --
 ALTER TABLE `products`
   MODIFY `Id_Product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT dla tabeli `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `settings`
+-- AUTO_INCREMENT dla tabeli `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `translations`
+-- AUTO_INCREMENT dla tabeli `translations`
 --
 ALTER TABLE `translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Constraints for dumped tables
+-- Ograniczenia dla zrzutów tabel
 --
 
 --
--- Constraints for table `carts`
+-- Ograniczenia dla tabeli `carts`
 --
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`Id_Product`) REFERENCES `products` (`Id_Product`);
 
 --
--- Constraints for table `categories`
+-- Ograniczenia dla tabeli `categories`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `data_rows`
+-- Ograniczenia dla tabeli `data_rows`
 --
 ALTER TABLE `data_rows`
   ADD CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `menu_items`
+-- Ograniczenia dla tabeli `menu_items`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `permission_role`
+-- Ograniczenia dla tabeli `permission_role`
 --
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `products`
+-- Ograniczenia dla tabeli `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `CategoryIDFK` FOREIGN KEY (`Id_Category`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `WarehouseDeliveryIDFK` FOREIGN KEY (`Id_WarehouseDelivery`) REFERENCES `warehousedeliveries` (`WarehouseDeliveryID`);
 
 --
--- Constraints for table `users`
+-- Ograniczenia dla tabeli `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_id_city_foreign` FOREIGN KEY (`Id_City`) REFERENCES `cities` (`Id_City`),
   ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
--- Constraints for table `user_roles`
+-- Ograniczenia dla tabeli `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `warehousedeliverers`
+-- Ograniczenia dla tabeli `warehousedeliverers`
 --
 ALTER TABLE `warehousedeliverers`
   ADD CONSTRAINT `warehousedeliverers_ibfk_1` FOREIGN KEY (`DelivererCityID`) REFERENCES `cities` (`Id_City`);
