@@ -135,7 +135,7 @@ class OrderController extends BaseController
         return $email;
     }
 
-    private function getOrderProducts($id_order){
+    public static function getOrderProducts($id_order){
         $products =  DB::table('order_product')
             ->join('products', 'products.Id_Product', '=', 'order_product.Id_Product')
             ->select('Name','amount','total')
