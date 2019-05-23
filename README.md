@@ -66,7 +66,7 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
     Page is available at the address "http://127.0.0.1:8000/worker". You must have worker privileges to log in.<br>
     Available features:<br>
     a) Show user's orders<br>
-
+    b) Invoices<br>
     b) Сhange the status of the order<br>
     ![image](https://user-images.githubusercontent.com/26176166/57583973-7407c380-74d6-11e9-9b3a-52f79b88b341.png)
     
