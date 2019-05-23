@@ -79,11 +79,11 @@ class CartController extends BaseController {
               'cart_products'=> $cart_products,
               'cart_total'=>$cart_total,
               'categories'=> $categories,
-            'discount' => getNumbers()->get('discount'),
-            'newSubtotal' => getNumbers()->get('newSubtotal'),
-            'newTax' => getNumbers()->get('newTax'),
-            'newTotal' => getNumbers()->get('newTotal'),
-        ]);;
+              'discount' => getNumbers()->get('discount'),
+              'newSubtotal' => getNumbers()->get('newSubtotal'),
+              'newTax' => getNumbers()->get('newTax'),
+              'newTotal' => getNumbers()->get('newTotal'),
+        ]);
 /*->with('cart_products', $cart_products)
 ->with('cart_total',$cart_total)
 ->with('categories', $categories)*/

@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use App\Coupon;
 use App\Jobs\UpdateCoupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+
 class CouponsController extends Controller
 {
-
-
     /**
      * Store a newly created resource in storage.
      *

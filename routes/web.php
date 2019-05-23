@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*AUTHENTICATION*/
 
@@ -58,6 +59,7 @@ Route::get('worker','WorkerPanelController@checkLoginStatus')->name('worker');
 Route::get('ship_order/{id_order}','WorkerPanelController@shipOrder')->name('shipOrder');
 Route::get('confirm_order/{id_order}','WorkerPanelController@confirmOrder')->name('confirmOrder');
 Route::get('cancel_order/{id_order}','WorkerPanelController@cancelOrder')->name('cancelOrder');
+Route::get('invoice/{id_order}', 'InvoiceController@invoice')->name('invoice');
 
 /* USER'S Coupons*/
 Route::post('/coupon','CouponsController@store')->name('coupon.store');
@@ -68,3 +70,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('product/{Name}',array('before'=>'auth.basic','as'  => 'show.product','uses'=>'ProductController@show'));
+
+
+

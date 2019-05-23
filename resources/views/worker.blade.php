@@ -86,7 +86,7 @@
                             <span class="glyphicon glyphicon-edit"></span>Zatwierdzić</a>
                     </td>
                     <td>
-                        <a class="btn btn-info btn-xs" href="">
+                        <a class="btn btn-info btn-xs" href="{{ route('invoice', $order->id) }}">
                             <span class="glyphicon glyphicon-file"></span>Faktura</a>
                     </td>
                     <td>
