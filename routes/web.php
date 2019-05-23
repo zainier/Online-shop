@@ -45,9 +45,12 @@ Route::get('/products/{category}','ProductController@checkLoginStatus')->name('c
 /* CART AND ORDERS*/
 
 Route::get('/cart', array('before'=>'auth.basic','as'=>'cart','uses'=>'CartController@getIndex'));
+
 Route::post('/cart/add', array('before'=>'auth.basic','uses'=>'CartController@postAddToCart'));
 Route::get('/cart/delete/{id}', array('before'=>'auth.basic','as'=>'delete_product_from_cart','uses'=>'CartController@getDelete'));
 Route::post('/cart/update', array('before'=>'auth.basic','as'=>'update','uses'=>'CartController@update'));
+
+Route::get('/order', array('before'=>'auth.basic','as'=>'cart.index','uses'=>'OrderController@postOrder'));
 
 Route::post('/order', array('before'=>'auth.basic','uses'=>'OrderController@postOrder'));
 Route::get('/user/orders', array('before'=>'auth.basic','as'=>'orders','uses'=>'OrderController@getIndex'));
@@ -70,6 +73,3 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('product/{Name}',array('before'=>'auth.basic','as'  => 'show.product','uses'=>'ProductController@show'));
-
-
-

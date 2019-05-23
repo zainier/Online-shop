@@ -3,20 +3,23 @@
     <li><a href="{{ route('register') }}">Sign Up</a></li>
     <li><a href="{{ route('login') }}">Login</a></li>
     @else
+
+
     <li>
-        <a href=href='{{URL::route('cart')}}'>Mój koszyk</a>
-    </li>
-    <li>
-        <a href="{{action('LoginController@logout') }}"
-            >
-            Logout
+        <a href='{{URL::route('orders')}}'>
+            Twoje zamowienia
         </a>
     </li>
+
     @endguest
-    <li><a href="{{ route('cart') }}">Cart
+    <li><a href="{{ route('cart') }}">Mój koszyk
 
     <span class="cart-count"><span>5</span></span>
-
+    <li>
+        <a href="{{action('LoginController@logout') }}">
+            Wyloguj się
+        </a>
+    </li>
     </a></li>
     {{-- @foreach($items as $menu_item)
         <li>

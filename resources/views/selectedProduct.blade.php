@@ -1,95 +1,112 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Sklep internetowy U Jacka | Informacja o produkcie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
-    <link rel="stylesheet" href="../css/font-awesome.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap.js"></script>
+@extends('layout')
 
-    <style>
-        .btn{
-            font-size: 40px;
-            height: 70px;
-        }
+@section('title', $product->name)
 
-    </style>
-</head>
-<body>
-    @include('header')
+@section('extra-css')
+    <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
+@endsection
 
+@section('content')
 
-<div class="container">
+    @component('components.breadcrumbs')
+        <a href="/products">Home</a>
+        <i class="fa fa-chevron-right breadcrumb-separator"></i>
+        <span><a href="{{ route('shop.index') }}">Shop</a></span>
+        <i class="fa fa-chevron-right breadcrumb-separator"></i>
+        <span>{{ $product->Name }}</span>
+    @endcomponent
 
-    <div class="row" >
+    <div class="container">
+        @if (session()->has('success_message'))
+            <div class="alert alert-success">
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
 
-					<div class='col-md-4' style='height:400px; '>
-						<h3 class='pp-title'><b>{{$product->Name}}</b></h3>
-						<div class='top' style='height:300px; width:400px;  '><img src='{{url('../images/products/'.$product->Name.'.jpg')}}' height=300px width=400px style='border-radius:8px;'></div>
-						<div style='text-align:right; font-size:30px; color:red;'><b>{{$product->Value}} zł / {{$product->UnitOfMeasurement}}</b></div>
-					</div>
-                    <div class='col-md-4'>
-                    </div>
-        <ul class="list-group" >
-            <aside class="col-md-4" style="margin-left:350px;  ">
-                <ul class="list-group" >
-                    <li class="list-group-item">
-                        <div class="row" style="background:#fafafa; border-radius:15px;" >
-                        <form action="/cart/add"  type="hidden" name="add_to_cart" method="post" accept-charset="UTF-8">
-                            {!! csrf_field() !!}
-                            <input type="hidden" name="product" value="{{$product->Id_Product}}" />
-                            <select class='form-control' name="amount" style="width: ;">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <p align="center"><button class="btn btn-success">Dodaj do koszyka</button></p>
-                        </form>
-
-                    </div>
-                    </li>
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
                 </ul>
-            </aside>
-
-            <aside class="col-md-4" style="margin-left:350px;  ">
-                <ul class="list-group" >
-                    <li class="list-group-item">
-                        <div class="row" style="background:#fafafa; border-radius:15px;" >
-                            <div class="col-md-3" ><i class="fa fa-phone fa-2x" style="padding-top: 25px;"></i></div>
-                            <div class="col-md-9" >Masz wątpliwośći? <br>Zadzwoń <br> 123 123 123</div>
-                        </div>
-                    </li>
-                </ul>
-            </aside>
-        </ul>
-
-
-                 <div class="col-sm-12 col-md-6 " style="margin-top:175px; margin-right: 800px; ">
-                    <h3 class="text-left">SIMILAR PRODUCTS</h3><br>
-                      @foreach($similar_product->slice(0, 4) as $similar)
-                        <div class="col-xs-6 col-md-6 text-center">
-                    <a href="{{ route('show.product', $similar->Name) }}">
-                            <img src='{{url('../images/products/'.$similar->Name.'.jpg')}}' height=150px width=200px >
-                            <p id="Similar-Title">{{ str_limit($similar->Name, $limit = 28, $end = '...') }}</p>
-
-                    </a>
-                </div>
-            @endforeach
-        </div>
-
+            </div>
+        @endif
     </div>
 
-</div>
+    <div class="product-section container">
+        <div>
+            <div class="product-section-image">
+                <img src='{{url('../images/products/'.$product->Name.'.jpg')}}' alt="{{$product->Name}}" class="active" id="currentImage">
+            </div>
+            <div class="product-section-images">
+                <div class="product-section-thumbnail selected">
+                    <img src='{{url('../images/products/'.$product->Name.'.jpg')}}' alt="{{$product->Name}}">
+                </div>
 
-<br><br><br><br>
-@include('includes.footer')
-</body>
-</html>
+
+            </div>
+        </div>
+        <div class="product-section-information">
+            <h1 class="product-section-title">{{ $product->Name }}</h1>
+            <div class="product-section-subtitle">{{ $product->details }}</div>
+            <div>{!! $stockLevel !!}</div>
+            <div class="product-section-price">{{ $product->Value }} zł / {{$product->UnitOfMeasurement}}</div>
+
+
+
+            <p>&nbsp;</p>
+            <form action="/cart/add"  type="hidden" name="add_to_cart" method="post" accept-charset="UTF-8">
+                {!! csrf_field() !!}
+                <input type="hidden" name="product" value="{{$product->Id_Product}}" />
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Ile chcesz zamowić?</label>
+                    <select class="form-control form-control-lg" name="amount" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="button button-plain">Dodaj do koszyka</button>
+            </form>
+
+
+        </div>
+    </div> <!-- end product-section -->
+
+    @include('partials.might-like')
+
+@endsection
+
+@section('extra-js')
+    <script>
+        (function(){
+            const currentImage = document.querySelector('#currentImage');
+            const images = document.querySelectorAll('.product-section-thumbnail');
+
+            images.forEach((element) => element.addEventListener('click', thumbnailClick));
+
+            function thumbnailClick(e) {
+                currentImage.classList.remove('active');
+
+                currentImage.addEventListener('transitionend', () => {
+                    currentImage.src = this.querySelector('img').src;
+                    currentImage.classList.add('active');
+                })
+
+                images.forEach((element) => element.classList.remove('selected'));
+                this.classList.add('selected');
+            }
+
+        })();
+    </script>
+
+    <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+    <script src="{{ asset('js/algolia.js') }}"></script>
+
+@endsection

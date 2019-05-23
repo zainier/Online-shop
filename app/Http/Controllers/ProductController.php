@@ -20,7 +20,7 @@ class ProductController extends Controller
                 ->where('slug', '=', $products)
                 ->get()->all();
         }
-        
+
         $categories = Category::all();
         //$categories = $this->loadCategories();
         return view('product', ['products' => $products],['categories' => $categories]);
@@ -51,6 +51,9 @@ class ProductController extends Controller
         // From Traits/CartTrait.php
         // ( Count how many items in Cart for signed in user )
        // $cart_count = $this->countProductsInCart();
+       $stockLevel = getStockLevel($product->AmountAvailable );
+       $mightAlsoLike = Product::mightAlsoLike()->get();
+        //$mightAlsoLike = Product::where('Name', '!=', $Name)->mightAlsoLike()->get();
         $similar_product= \DB::table('products')->where('Id_Product', '!=', $product->Id_Product)
             ->where(function ($query) use ($product) {
                 $query->where('Id_Category', '=', $product->Id_Category);
@@ -59,6 +62,8 @@ class ProductController extends Controller
             return View::make('selectedProduct')
             ->with('product',$product)
             ->with('similar_product',$similar_product)
+            ->with('stockLevel',$stockLevel)
+            ->with('mightAlsoLike', $mightAlsoLike)
             ->with('categories', $categories);
     //return view('selectedProduct', compact('product', 'similar_product', 'categories'));
     }

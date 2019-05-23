@@ -16,6 +16,63 @@ use View;
 
 class CartController extends BaseController {
 
+    public function index()
+        {
+            $user_id = Auth::user()->id;
+            $mightAlsoLike = Product::mightAlsoLike()->get();
+            $cart_products = Cart::with('Products')->where('user_id','=',$user_id)->get();
+            $cart_total = Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
+            $categories = $this->loadCategories();
+            return View::make('cart')
+                  ->with([
+                      'cart_products'=> $cart_products,
+                      'cart_total'=>$cart_total,
+                      'categories'=> $categories,
+                      'mightAlsoLike' => $mightAlsoLike,
+                      'discount' => getNumbers()->get('discount'),
+                      'newSubtotal' => getNumbers()->get('newSubtotal'),
+                      'newTax' => getNumbers()->get('newTax'),
+                      'newTotal' => getNumbers()->get('newTotal'),
+                ]);
+
+
+        }
+
+    public function store(Product $product)
+    {
+        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
+            return $cartItem->id === $product->id;
+        });
+
+        if ($duplicates->isNotEmpty()) {
+            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
+        }
+
+        Cart::add($product->id, $product->name, 1, $product->price)
+            ->associate('App\Product');
+
+        return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
+    }
+
+    public function switchToSaveForLater($id)
+        {
+            $item = Cart::get($id);
+
+            Cart::remove($id);
+
+            $duplicates = Cart::instance('saveForLater')->search(function ($cartItem, $rowId) use ($id) {
+                return $rowId === $id;
+            });
+
+            if ($duplicates->isNotEmpty()) {
+                return redirect()->route('cart.index')->with('success_message', 'Item is already Saved For Later!');
+            }
+
+            Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
+                ->associate('App\Product');
+
+            return redirect()->route('cart.index')->with('success_message', 'Item has been Saved For Later!');
+        }
   public function postAddToCart()
   {
     $rules=array(
@@ -61,21 +118,21 @@ class CartController extends BaseController {
       return $categories;
   }
   public function getIndex(){
-
+    $mightAlsoLike = Product::mightAlsoLike()->get();
     $user_id = Auth::user()->id;
-
     $cart_products = Cart::with('Products')->where('user_id','=',$user_id)->get();
-
     $cart_total = Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
+    $categories = $this->loadCategories();
 
     if(!$cart_products){
-
       return Redirect::route('index')->with('error','Your cart is empty');
     }
-    $categories = $this->loadCategories();
-    return View::make('cart')
 
+
+    return View::make('cart')
           ->with([
+              'mightAlsoLike'=> $mightAlsoLike,
+
               'cart_products'=> $cart_products,
               'cart_total'=>$cart_total,
               'categories'=> $categories,

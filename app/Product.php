@@ -25,6 +25,11 @@ class Product extends Model {
     public function category() {
         return $this->hasOne('App\Category', 'id');
     }
+
+    public function scopeMightAlsoLike($query)
+   {
+       return $query->inRandomOrder()->take(4);
+   }
     /**
      * One Product can have many photos.
      *
