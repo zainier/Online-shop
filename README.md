@@ -67,6 +67,7 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
     Available features:<br>
     a) Show user's orders<br>
     b) Invoices<br>
+    ![image](https://user-images.githubusercontent.com/26176166/58289265-3a786780-7db6-11e9-8918-cf700c0cc139.png)<br><br>
     b) Сhange the status of the order<br>
     ![image](https://user-images.githubusercontent.com/26176166/57583973-7407c380-74d6-11e9-9b3a-52f79b88b341.png)
     
