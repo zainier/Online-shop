@@ -4,7 +4,9 @@
     <li><a href="{{ route('login') }}">Login</a></li>
     @else
 
-
+    <li>
+            <a href="{{url('profile')}}">Moje konto</a>
+        </li>
     <li>
         <a href='{{URL::route('orders')}}'>
             Twoje zamowienia

@@ -25,6 +25,14 @@ Route::get('/', function () {
 Route::post('index', 'ProductController@checkLoginStatus');
 Route::post('register', 'RegisterController@register');
 
+Route::post('/editEmail', 'ProfileController@editEmail');
+Route::post('/editEmail', 'ProfileController@editEmail');
+Route::post('/editPassword', 'ProfileController@editPassword');
+Route::post('/editPhoneNumber', 'ProfileController@editPhoneNumber');
+Route::post('/editAddress', 'ProfileController@editAddress');
+Route::post('/editPostalCode', 'ProfileController@editPostalCode');
+Route::post('/editCity', 'ProfileController@editCity');
+Route::get('profile', 'ProfileController@getProfile');
 Route::post('login', 'LoginController@login');
 
 
