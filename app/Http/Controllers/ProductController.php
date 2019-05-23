@@ -20,13 +20,17 @@ class ProductController extends Controller
                 ->where('slug', '=', $products)
                 ->get()->all();
         }
-        $categories = $this->loadCategories();
-        return view('products', ['products' => $products],['categories' => $categories]);
+        
+        $categories = Category::all();
+        //$categories = $this->loadCategories();
+        return view('product', ['products' => $products],['categories' => $categories]);
     }
+
     public function loadCategories(){
         $categories = \DB::table('categories')->select('name', 'slug')->get();
         return $categories;
     }
+
     public function checkLoginStatus($category = null){
         if(is_null(\Session::get('key'))){
             return redirect('/');

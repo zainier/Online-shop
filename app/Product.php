@@ -61,4 +61,8 @@ class Product extends Model {
    public static function ProductLocatedAt($Name) {
         return static::where(compact('Name'))->firstOrFail();
     }
+    public function categories()
+       {
+           return $this->belongsToMany('App\Category');
+       }
 }

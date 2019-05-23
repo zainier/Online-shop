@@ -37,9 +37,9 @@ Route::get('logout', 'LoginController@logout');
 /* PRODUCTS AND CATEGORIES*/
 
 
-Route::get('products','ProductController@checkLoginStatus');
-
-Route::get('products/{category}','ProductController@checkLoginStatus')->name('category');
+//Route::get('/shop','ProductController@index')->name('shop.index');
+Route::get('/products', 'ProductController@checkLoginStatus')->name('shop.index');
+Route::get('/products/{category}','ProductController@checkLoginStatus')->name('category');
 
 /* CART AND ORDERS*/
 
