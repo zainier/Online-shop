@@ -13,8 +13,6 @@
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
         <span><a href="{{ route('shop.index') }}">Shop</a></span>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <span>{{ $categoryName }}</span>
-        <i class="fa fa-chevron-right breadcrumb-separator"></i>
         <span>{{ $product->Name }}</span>
     @endcomponent
 
