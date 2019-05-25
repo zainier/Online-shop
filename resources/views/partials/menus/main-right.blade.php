@@ -15,8 +15,9 @@
 
     @endguest
     <li><a href="{{ route('cart') }}">Mój koszyk
-
-    <span class="cart-count"><span>5</span></span>
+        @if($cart_count > 0)
+            <span class="cart-count"><span>{{$cart_count}}</span></span>
+        @endif
     <li>
         <a href="{{action('LoginController@logout') }}">
             Wyloguj się

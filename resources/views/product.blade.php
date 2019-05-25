@@ -9,10 +9,11 @@
 @section('content')
 
 
+    @component('components.breadcrumbs')
         <a href="/products">Home</a>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <span>Shop</span>
-
+        <span>{{$categoryName}}</span>
+    @endcomponent
 
     <div class="container">
         @if (session()->has('success_message'))
@@ -43,7 +44,7 @@
         </div> <!-- end sidebar -->
         <div>
             <div class="products-header">
-                <h1 class="stylish-heading">Towary</h1>
+                <h1 class="stylish-heading">{{$categoryName}}</h1>
 
             </div>
 

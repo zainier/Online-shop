@@ -37,7 +37,7 @@
 
             <ul>
               <li class="active"><a href="{{url('profile')}}">Moje konto</a></li>
-
+              <li><a href="{{URL::route('orders')}}">Historia zakupow</a></li>
             </ul>
         </div> <!-- end sidebar -->
         <div class="my-profile">

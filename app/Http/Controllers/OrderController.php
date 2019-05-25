@@ -82,10 +82,19 @@ class OrderController extends BaseController
         $categories = \DB::table('categories')->select('name', 'slug')->get();
         return $categories;
     }
+
+
+    public function countProductsInCart() {
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            $cart_count = Cart::where('user_id', '=', $user_id)->count();
+            return $cart_count > 0 ? $cart_count : 0;
+        }
+    }
     public function getIndex(){
 
         $user_id = Auth::user()->id;
-
+        $cart_count = $this->countProductsInCart();
         if(Auth::user()->admin){
 
             $orders=Order::all();
@@ -100,9 +109,10 @@ class OrderController extends BaseController
             return Redirect::route('index')->with('error','There is no order.');
         }
         $categories = $this->loadCategories();
-        return View::make('order')
+        return View::make('my-orders')
             ->with('orders', $orders)
-             ->with('categories', $categories);
+             ->with('categories', $categories)
+             ->with('cart_count',$cart_count);
     }
 
     public static function updateStatus($id_order, $status){

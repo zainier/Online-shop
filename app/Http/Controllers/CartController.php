@@ -3,40 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
-
 use App\Product as Product;
 use Illuminate\Support\Facades\Validator;
 use Gloudemans\Shoppingcart\Facades\Cart as crt;
+use App\Http\Traits\CartTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Routing\Controller as BaseController;
-use App\Http\Traits\CartTrait;
+
 use View;
 
 class CartController extends BaseController {
 
-    public function index()
-        {
-            $user_id = Auth::user()->id;
-            $mightAlsoLike = Product::mightAlsoLike()->get();
-            $cart_products = Cart::with('Products')->where('user_id','=',$user_id)->get();
-            $cart_total = Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
-            $categories = $this->loadCategories();
-            return View::make('cart')
-                  ->with([
-                      'cart_products'=> $cart_products,
-                      'cart_total'=>$cart_total,
-                      'categories'=> $categories,
-                      'mightAlsoLike' => $mightAlsoLike,
-                      'discount' => getNumbers()->get('discount'),
-                      'newSubtotal' => getNumbers()->get('newSubtotal'),
-                      'newTax' => getNumbers()->get('newTax'),
-                      'newTotal' => getNumbers()->get('newTotal'),
-                ]);
 
-
-        }
 
     public function store(Product $product)
     {
@@ -113,26 +93,35 @@ class CartController extends BaseController {
       return redirect()->route('cart');
   }
 
+
+  public function countProductsInCart() {
+      if (Auth::check()) {
+
+          $user_id = Auth::user()->id;
+          $cart_count = Cart::where('user_id', '=', $user_id)->count();
+          return $cart_count > 0 ? $cart_count : 0;
+      }
+  }
+
   public function loadCategories(){
       $categories = \DB::table('categories')->select('name', 'slug')->get();
       return $categories;
   }
+
   public function getIndex(){
     $mightAlsoLike = Product::mightAlsoLike()->get();
     $user_id = Auth::user()->id;
     $cart_products = Cart::with('Products')->where('user_id','=',$user_id)->get();
     $cart_total = Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
     $categories = $this->loadCategories();
-
+    $cart_count = $this->countProductsInCart();
     if(!$cart_products){
       return Redirect::route('index')->with('error','Your cart is empty');
     }
 
-
     return View::make('cart')
           ->with([
               'mightAlsoLike'=> $mightAlsoLike,
-
               'cart_products'=> $cart_products,
               'cart_total'=>$cart_total,
               'categories'=> $categories,
@@ -140,27 +129,19 @@ class CartController extends BaseController {
               'newSubtotal' => getNumbers()->get('newSubtotal'),
               'newTax' => getNumbers()->get('newTax'),
               'newTotal' => getNumbers()->get('newTotal'),
+              'cart_count'=>$cart_count,
         ]);
-/*->with('cart_products', $cart_products)
-->with('cart_total',$cart_total)
-->with('categories', $categories)*/
   }
       public function update() {
 
         $user_id = Auth::user()->id;
-
         $amount = Input::get('amount');
-
         $product_id = Input::get('product');
-
         $cart_id = Input::get('cart_id');
         $value = Input::get('value');
-
         $product = Product::find($product_id);
         $total = $amount*$value;
-
         $cart = Cart::where('user_id', '=', $user_id)->where('Id_Product', '=', $product_id)->where('id', '=', $cart_id);
-
         $cart->update(array(
             'user_id'    => $user_id,
             'Id_Product' => $product_id,
@@ -171,9 +152,7 @@ class CartController extends BaseController {
     }
 
   public function getDelete($id){
-
     $cart = Cart::find($id)->delete();
-
     return redirect()->route('cart');
   }
 

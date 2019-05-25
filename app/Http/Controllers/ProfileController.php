@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Traits\CartTrait;
 use App\Users;
+use App\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -10,6 +11,15 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+
+    public function countProductsInCart() {
+            if (Auth::check()) {
+
+                $user_id = Auth::user()->id;
+                $cart_count = Cart::where('user_id', '=', $user_id)->count();
+                return $cart_count;
+            }
+        }
 
     public function edit()
     {
@@ -100,8 +110,19 @@ class ProfileController extends Controller
 
 
     public static function getProfile(){
+
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            $cart_count = Cart::where('user_id', '=', $user_id)->count();
+
+        }
+
         $users = Auth::user();
         $cities = DB::table('cities')->pluck('Id_City','cityName');
-        return view('profile', ['cities' => $cities, 'user' => $users]);
+        return view('profile', [
+            'cities' => $cities,
+            'user' => $users,
+            'cart_count' => $cart_count,
+        ]);
     }
 }

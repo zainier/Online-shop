@@ -32,9 +32,9 @@
                 </div>
             @endif
 
-            @if (Cart::count() > -1)
+            @if ($cart_count > 0)
 
-            <h2>{{ Cart::count() }} item(s) in Shopping Cart</h2>
+            <h2>{{ $cart_count }} item(s) in Shopping Cart</h2>
 
             <div class="cart-table">
                 @foreach($cart_products as $item)
@@ -117,7 +117,7 @@
                             <hr>
                             {{ presentPrice($newSubtotal)+1 }} <br>
                         @endif
-                        {{ presentPrice($newTax) }} <br>
+                        <br>
                         <span class="cart-totals-total">{{ $cart_total }}</span>
                     </div>
                 </div>

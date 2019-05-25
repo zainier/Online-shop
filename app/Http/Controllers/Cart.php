@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Product;
+use App\Http\Traits\CartTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model {
