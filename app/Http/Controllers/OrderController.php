@@ -27,10 +27,7 @@ class OrderController extends BaseController
 
     public function postOrder()
     {
-        $rules=array(
 
-            'address'=>'required'
-        );
 
         $user_id = Auth::user()->id;
         $address = Auth::user()->address;
@@ -63,7 +60,7 @@ class OrderController extends BaseController
         }
 
         Cart::where('user_id','=',$user_id)->delete();
-
+/*
         //Send email to Client
         $order = Order::all()->last();
         $products = self::getOrderProducts($order->id);
@@ -74,7 +71,7 @@ class OrderController extends BaseController
             'created_at' => $order->created_at]);
 
         self::placed($data);
-
+*/
         return redirect()->route('orders');
     }
 

@@ -64,6 +64,10 @@ Route::post('/order', array('before'=>'auth.basic','uses'=>'OrderController@post
 Route::get('/user/orders', array('before'=>'auth.basic','as'=>'orders','uses'=>'OrderController@getIndex'));
 Route::get('/order', array('before'=>'auth.basic','uses'=>'OrderController@postOrder'));
 
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
+Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+
+
 /* USER'S ORDERS*/
 
 Route::get('worker','WorkerPanelController@checkLoginStatus')->name('worker');

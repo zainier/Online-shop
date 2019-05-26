@@ -125,10 +125,7 @@
 
             <div class="cart-buttons">
                 <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
-                <form action="/order" method="post" accept-charset="UTF-8">
-                    {!! csrf_field() !!}
-                    <button type="submit" class="button button-plain">Zamawiam</button>
-                </form>
+                <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>
             </div>
 
             @else
