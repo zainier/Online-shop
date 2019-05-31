@@ -63,6 +63,7 @@ DataBase will listen to port 8080. Starting a server - run Apache and MySQL modu
     b) Users - CRUD<br>
     
 6. <b>Worker Panel</b><br>
+    We use Voyager. Voyager is a Laravel Admin Package that includes BREAD(CRUD) operations, a media manager, menu builder, and much         more.<br>
     Page is available at the address "http://127.0.0.1:8000/worker". You must have worker privileges to log in.<br>
     Available features:<br>
     a) Show user's orders<br>
