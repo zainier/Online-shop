@@ -37,12 +37,12 @@
 
             <ul>
                 <li class="active"><a href="{{url('profile')}}">Moje konto</a></li>
-                <li><a href="{{URL::route('orders')}}">Historia zakupow</a></li>
+                <li><a href="{{URL::route('orders')}}">Historia zakupów</a></li>
             </ul>
         </div> <!-- end sidebar -->
         <div class="my-profile">
             <div class="products-header">
-                <h1 class="stylish-heading">Historia zakupow</h1>
+                <h1 class="stylish-heading">Historia zakupów</h1>
             </div>
 
             <div>
@@ -55,18 +55,18 @@
                                 <div>{{ presentDate($order->created_at) }}</div>
                             </div>
                             <div>
-                                <div class="uppercase font-bold">Numer zamowienia</div>
+                                <div class="uppercase font-bold">Numer zamówienia</div>
                                 <div>{{ $order->id }}</div>
                             </div><div>
                                 <div class="uppercase font-bold">Łączna cena</div>
-                                <div>{{ $order->total }}</div>
+                                <div>{{ $order->total }} zł</div>
                             </div>
                         </div>
                         <div>
                             <div class="order-header-items">
 
                                 <div>|</div>
-                                <div><a href="#">Faktura</a></div>
+                                <div><a href="{{action('InvoiceController@invoice',$order->id)}}">Faktura</a></div>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                     <div>
                                         <a href="{{ route('show.product', $product->Name) }}">{{ $product->Name }}</a>
                                     </div>
-                                    <div>Cena: {{ $product->Value }}\{{ $product->UnitOfMeasurement }}</div>
+                                    <div>Cena: {{ $product->Value }} zł/{{ $product->UnitOfMeasurement }}</div>
                                     <div>Ilość: {{ $product->pivot->amount }}</div>
                                 </div>
                             </div>
