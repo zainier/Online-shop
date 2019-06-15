@@ -53,7 +53,7 @@
                     <div class="product">
                         <a href="{{ route('show.product', $product->Name) }}"><img src='{{url('../images/products/'.$product->Name.'.jpg')}}' alt="product"></a>
                         <a href="{{ route('show.product', $product->Name) }}"><div class="product-name">{{ $product->Name }}</div></a>
-                        <div class="product-price">{{ $product->Value }}</div>
+                        <div class="product-price">{{ $product->Value }} zł</div>
                     </div>
                 @empty
                     <div style="text-align: left">No items found</div>

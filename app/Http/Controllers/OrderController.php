@@ -60,7 +60,7 @@ class OrderController extends BaseController
         }
 
         Cart::where('user_id','=',$user_id)->delete();
-/*
+
         //Send email to Client
         $order = Order::all()->last();
         $products = self::getOrderProducts($order->id);
@@ -71,7 +71,7 @@ class OrderController extends BaseController
             'created_at' => $order->created_at]);
 
         self::placed($data);
-*/
+		
         return redirect()->route('orders');
     }
 
@@ -94,11 +94,11 @@ class OrderController extends BaseController
         $cart_count = $this->countProductsInCart();
         if(Auth::user()->admin){
 
-            $orders=Order::all();
+            $orders=Order::orderBy('updated_at','desc')->all();
 
         }else{
 
-            $orders=Order::with('orderItems')->where('user_id','=',$user_id)->get();
+            $orders=Order::orderBy('updated_at','desc')->with('orderItems')->where('user_id','=',$user_id)->get();
         }
 
         if(!$orders){
@@ -106,6 +106,7 @@ class OrderController extends BaseController
             return Redirect::route('index')->with('error','There is no order.');
         }
         $categories = $this->loadCategories();
+
         return View::make('my-orders')
             ->with('orders', $orders)
              ->with('categories', $categories)
@@ -128,7 +129,7 @@ class OrderController extends BaseController
         Mail::to(OrderController::getUserEmail($data['id_order']))->send(new OrderShipped($data));
     }
 
-    private function placed($data){
+    public static function placed($data){
         Mail::to(OrderController::getUserEmail($data['id_order']))->send(new OrderPlaced($data));
     }
 

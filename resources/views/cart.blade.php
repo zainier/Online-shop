@@ -44,7 +44,7 @@
                         <img src='{{url('../images/products/'.$item->Products->Name.'.jpg')}}' alt="{{$item->Products->Name}}" class="cart-table-img"></a>
                         <div class="cart-item-details">
                             <div class="cart-table-item"><a href="{{ route('show.product', $item->Products->Name) }}">{{ $item->Products->Name }}</a></div>
-                            <div class="cart-table-description">{{ $item->Products->Value }}</div>
+                            <div class="cart-table-description">{{ $item->Products->Value }} zł</div>
                         </div>
                     </div>
                     <div class="cart-table-row-right">
@@ -70,7 +70,7 @@
 
 
                         </div>
-                        <div>{{$item->total}}</div>
+                        <div>{{$item->total}} zł</div>
                     </div>
                 </div> <!-- end cart-table-row -->
                 @endforeach
@@ -118,7 +118,7 @@
                             {{ presentPrice($newSubtotal)+1 }} <br>
                         @endif
                         <br>
-                        <span class="cart-totals-total">{{ $cart_total }}</span>
+                        <span class="cart-totals-total">{{ $cart_total }} zł</span>
                     </div>
                 </div>
             </div> <!-- end cart-totals -->

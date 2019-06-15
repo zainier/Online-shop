@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Product;
 use App\Cart;
+use App\Http\Controllers\OrderController;
 use App\Mail\OrderPlaced;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,18 +65,18 @@ class CheckoutController extends Controller
         }
 
         Cart::where('user_id','=',$user_id)->delete();
-        /*
+        
                 //Send email to Client
                 $order = Order::all()->last();
-                $products = self::getOrderProducts($order->id);
+                $products = OrderController::getOrderProducts($order->id);
                 $data = (['id_order' => $order->id,
                     'status' => OrderController::getStatus($order->id)->type,
                     'products' => $products,
                     'price' => $order->total,
                     'created_at' => $order->created_at]);
 
-                self::placed($data);
-        */
+                OrderController::placed($data);
+        
         return redirect()->route('orders');
     }
 
