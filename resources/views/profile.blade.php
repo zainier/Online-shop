@@ -54,10 +54,9 @@
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                     <input id="email" type="email" name="Email" value="{{ old('email', $user->email) }}" placeholder="Email" >
-                                    <label class="label--desc">Email</label>
+                                     <input id="email" type="email" name="Email" value="{{ old('email', $user->email) }}" placeholder="Email">
                                 </div>
-                            </div>
+                            </div><br>
                         </div>
                         <button class="button button-plain" type="submit" name="submit">
                             Edytuj
@@ -70,10 +69,9 @@
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="password" name="Password">
-                                    <label class="label--desc">Haslo</label>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <button class="button button-plain" type="submit" name="submit">
                             Edytuj
                         </button>
@@ -88,12 +86,11 @@
                                     <div class="col-9">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="text" name="PhoneNumber">
-                                            <label class="label--desc">Numer telefonu</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <button class="button button-plain" type="submit" name="submit">
                             Edytuj
                         </button>
@@ -105,10 +102,9 @@
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="Address">
-                                    <label class="label--desc">Adres</label>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <button class="button button-plain" type="submit" name="submit">
                             Edytuj
                         </button>

@@ -96,7 +96,7 @@
 
                 <div class="cart-totals-right">
                     <div>
-                        Subtotal <br>
+                        <br>
                         @if (session()->has('coupon'))
                             Code ({{ session()->get('coupon')['name'] }})
                             <form action="{{ route('coupon.destroy') }}" method="POST" style="display:block">

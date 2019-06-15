@@ -1,6 +1,6 @@
 <div class="might-like-section">
     <div class="container">
-        <h2>Może ci się spodobać również...</h2>
+        <h2>Może Ci się spodobać również...</h2>
         <div class="might-like-grid">
             @foreach ($mightAlsoLike as $product)
                 <a href="{{ route('show.product', $product->Name) }}" class="might-like-product">
